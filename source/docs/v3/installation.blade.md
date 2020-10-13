@@ -1,31 +1,31 @@
 ---
-title: Installation
+title: 安装
 extends: _layouts.documentation
 section: content
 ---
 
-# Installation {#installation}
+# 安装 {#installation}
 
-Require the package using composer:
+使用 composer 来安装:
 
 ```php
 composer require stancl/tenancy
 ```
 
-Then run the following command:
+然后运行下面的命令:
 
 ```php
 php artisan tenancy:install
 ```
 
-It will create:
+它将会创建:
 
-- migrations
-- a config file (`config/tenancy.php`),
-- a routes file (`routes/tenant.php`),
-- and a service provider file `app/Providers/TenancyServiceProvider.php`
+- 迁移文件
+- 一个配置文件 (`config/tenancy.php`),
+- 一个路由文件 (`routes/tenant.php`),
+- 一个服务提供者文件 `app/Providers/TenancyServiceProvider.php`
 
-Then add the service provider to your `config/app.php` file:
+然后在 `config/app.php` 文件中添加服务提供者:
 
 ```php
 /*
@@ -39,4 +39,4 @@ App\Providers\RouteServiceProvider::class,
 App\Providers\TenancyServiceProvider::class, // <-- here
 ```
 
-And finally, name your central connection (in `config/database.php`) `central` — or however else you want, but make sure it's the same name as the `tenancy.central_connection` config.
+最后, 命名你的中心数据库连接 (in `config/database.php`) 为`central` 或任何你想要的名字, 但需要确保它与 `tenancy.central_connection` 配置文件中的名字一样。
