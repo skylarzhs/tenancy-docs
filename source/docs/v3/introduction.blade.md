@@ -1,36 +1,36 @@
 ---
-title: Introduction
+title: 介绍
 extends: _layouts.documentation
 section: content
 ---
 
-# Introduction {#introduction}
+# 介绍 {#introduction}
 
-## What is multi-tenancy? {#what-is-multi-tenancy}
+## 什么是多租户？ {#what-is-multi-tenancy}
 
-Multi-tenancy is the ability to provide your service to multiple users (tenants) from a single hosted instance of the application. This is contrasted with deploying the application separately for each user.
+多租户是可以让你的单主机应用程序（译者注：单域名网站）具备向您的用户（租户）提供服务的能力。它相较于单独为每一个用户部署应用程序是有区别的。
 
-You may find this talk insightful: [https://multitenantlaravel.com/](https://multitenantlaravel.com/). Simply going through the slides will give you 80% of the value of the talk in under five minutes.
+你会发现这些谈话很有见地：[https://multitenantlaravel.com/](https://multitenantlaravel.com/) 。简单地浏览一下幻灯片，你就能在五分钟内获得谈话80%的价值。
 
-Note that if you just want to, say, scope todo tasks to the current user, there's no need to use a multi-tenancy package. Just use calls like `auth()->user()->tasks()`. This is the simplest form of multi-tenancy.
+如果你只想让当前用户有自己的Todo任务。那么不需要使用多租户扩展包，只需要这样调用一下 `auth()->user()->tasks()`， 这是多租户的最简单形式。
 
-This package is built around the idea that multi-tenancy usually means letting tenants have their own users which have their own resources, e.g. todo tasks. Not just users having tasks.
+本扩展包是围绕"多租户通常意味着这些租户拥有他们自己用户，这些用户有自己的资源"这个想法而建的，如：Todo任务，而不仅是用户们共用一个任务。
 
-## Types of multi-tenancy {#types-of-multi-tenancy}
+## 多租户的类型 {#types-of-multi-tenancy}
 
-There are two **types** of multi-tenancy:
+这里有两种多租户 **类型** :
 
-- single-database tenancy — tenants share one database and their data is separated using e.g. `where tenant_id = 1` clauses.
-- multi-database tenancy — each tenant has his own database
+- 单数据库租用 — 租户共享数据库并且他们的数据是分开的 ，使用类似 `where tenant_id = 1` 语句区分。
+- 多数据库租用 — 每个租户有他们自己的数据库。
 
-This package lets you do both, though it focuses more on multi-database tenancy because that type requires more work on the side of the package and less work on your side. Whereas for single-database tenancy you're provided with a class that keeps track of the current tenant and model traits — and the rest is up to you.
+本扩展包让你同时拥有这两种类型, 尽管它更关注多数据库租户类型，原因是这种类型在必须要在扩展包那边做更多开发和您这边更少的开发（译注：扩展包需要做的很多，Laravel开发就越少），然而对于单数据库租户类型，提供一个类来存放当前用户轨迹和模型特征，剩下的就靠你了
 
-## Modes of multi-tenancy {#modes-of-multi-tenancy}
+## 多租户模型 {#modes-of-multi-tenancy}
 
-The tenancy "mode" is a unique property of this package. In previous versions, this package was intended primarily for [automatic tenancy]({{ $page->link('automatic-mode') }}), which means that after a tenant was identified, things like database connections, caches, filesystems, queues etc were switched to that tenant's context — his data completely isolated from the rest.
+这租户"模式（mode）"是这个扩展包的唯一属性（property），前一个版本被替换的主要原因是为了[自动租用]({{ $page->link('automatic-mode') }})， 它以为着在识别租户后，比如数据库连接、缓存、文件系统、队列等都切换到了与那个租户相关了—— 他的数据是完全分开的
 
-In the current version, we're also making [manual tenancy]({{ $page->link('manual-mode') }}) a first-class feature. We provide you with things like model traits if you wish to scope the data yourself.
+在当前版本中, 我们也制作 [手动租用]({{ $page->link('manual-mode') }}) 这个优秀特征. 如果你想要限制的数据数据范围，我们提供了一些如模型特征（model traits）等东西。
 
-## Tenant identification {#tenant-identification}
+## 租户识别 {#tenant-identification}
 
-For your application to be tenant-aware, a [tenant has to be identified]({{ $page->link('tenant-identification') }}). This package ships with many identification middleware classes. You may identify tenants by domain, subdomain, domain OR subdomain at the same time, path or request data.
+为您的应用能够 [识别租户]({{ $page->link('tenant-identification') }})， 本扩展包含了许多鉴定中间件(middleware classes)，你可以通过域名、子域名、同时使用域名和子域名、路径和请求数据来识别租户。

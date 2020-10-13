@@ -5,11 +5,10 @@ use Illuminate\Support\Str;
 return [
     'baseUrl'         => 'http://localhost:3000',
     'production'      => false,
-    'siteName'        => 'Tenancy for Laravel',
-    'siteDescription' => 'Automatically turn any Laravel application multi-tenant — no code changes needed. stancl/tenancy automatically switches database connections and all other things in the background, letting you leverage standard Laravel code into a full SaaS application. Most features out of all multi-tenancy packages. Single & multi-database tenancy.',
-
+    'siteName'        => 'Tenancy for Laravel中文站',
+    'siteDescription' => '自动转换任意Laravel应用为多租户应用 - 无需修改代码，stancl/tenancy能自动地切换数据库连接和后端能做的所有其他事，让您能在完整的SaaS应用中使用标准的Laravel代码。满足所有多租户扩展包的绝大多数特性，单数据库或多数据库来实现多租户。',
     'githubUrl'     => 'https://github.com/stancl/tenancy',
-    'githubDocsUrl' => 'https://github.com/stancl/tenancy-docs',
+    'githubDocsUrl' => 'https://github.com/larasaas/tenancy-docs',
 
     // key => display name
     'versions' => [
