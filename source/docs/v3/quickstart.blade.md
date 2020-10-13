@@ -197,4 +197,4 @@ App\Models\Tenant::all()->runForEach(function () {
 
 ## 试试看 {#trying-it-out}
 
-现在，在你浏览器里打开 `foo.localhost` ，我们应该能看到 users 表里的用户. 如果我们打开 `bar.localhost`，我们将能看到一个不同的用户.
+现在，在你浏览器里打开 `foo.localhost` ，我们应该能看到 users 表里的用户，打开 `bar.localhost`，我们将能看到一个不同的用户。
