@@ -1,38 +1,38 @@
 ---
-title: Quickstart Tutorial
+title: 快速入门教程
 extends: _layouts.documentation
 section: content
 ---
 
-# Quickstart Tutorial {#quickstart-tutorial}
+# 快速入门教程 {#quickstart-tutorial}
 
-This tutorial focuses on getting you started with stancl/tenancy 3.x quickly. It implements multi-database tenancy & domain identification. If you need a different implementation, then **that's absolutely possible with this package** and it's very easy to refactor to a different implementation.
+本教程主要介绍如何快速开始使用 stancl/tenancy 3.x ，它演示了多数据库租用和域名鉴别。如果你需要不同的例子，  用**这个包是完全可能的** 并且它非常容易的重构不同的实现。
 
-We recommend following this tutorial just **to get things working** so that you can play with the package. Then if you need to, you can refactor the details of the multi-tenancy implementation (e.g. single-database tenancy, request data identification, etc).
+我们建议您遵循本教程，这样你可以使用这个包来让程序跑起来。然后如果你有需要，你可以重构这个多租户的实现细节（例如：单数据库租用，请求数据识别等）。
 
-## Installation {#installation}
+## 安装 {#installation}
 
-First, require the package using composer:
+首先, 通过composer来安装这个包:
 
 ```php
 composer require stancl/tenancy
 ```
 
-Then, run the `tenancy:install` command:
+然后, 执行 `tenancy:install` 命令:
 
 ```php
 php artisan tenancy:install
 ```
 
-This will create a few files: migrations, config file, route file and a service provider.
+这会创建几个文件: 迁移文件, 配置文件, 路由文件和服务提供者。
 
-Let's run the migrations:
+让我们执行迁移:
 
 ```php
 php artisan migrate
 ```
 
-Register the service provider in `config/app.php`. Make sure it's on the same position as in the code snippet below:
+在 `config/app.php`中注册这个服务提供者，确认把它放在下面这段代码片段中的相同位置上:
 
 ```php
 /*
@@ -43,12 +43,12 @@ App\Providers\AuthServiceProvider::class,
 // App\Providers\BroadcastServiceProvider::class,
 App\Providers\EventServiceProvider::class,
 App\Providers\RouteServiceProvider::class,
-App\Providers\TenancyServiceProvider::class, // <-- here
+App\Providers\TenancyServiceProvider::class, // <-- here【这里】
 ```
 
-## Creating a tenant model {#creating-a-tenant-model}
+## 创建一个租户模型 {#creating-a-tenant-model}
 
-Now you need to create a Tenant model. The package comes with a default Tenant model that has many features, but it attempts to be mostly unopinonated and as such, we need to create a custom model to use domains & databases. Create `App\Tenant` like this:
+现在你需要创建一个租户模型(model)，虽然这个包自带了一个丰富特性的默认租户模型，但试图让它更灵活，我们需要创建一个自定义 model 来使用域名和数据库， 创建 `App\Tenant` 如:
 
 ```php
 <?php
@@ -67,6 +67,7 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 ```
 
 Now we need to tell the package to use this custom model:
+现在我们需要告诉这个包使用自定义模型:
 
 ```php
 // config/tenancy.php
@@ -74,15 +75,15 @@ Now we need to tell the package to use this custom model:
 'tenant_model' => \App\Tenant::class,
 ```
 
-## Events {#events}
+## 事件 {#events}
 
-The defaults will work out of the box here, but a short explanation will be useful. The `TenancyServiceProvider` file in your `app/Providers` directory maps tenancy events to listeners. By default, when a tenant is created, it runs a `JobPipeline` (a smart thing that's part of this package) which makes sure that the `CreateDatabase`, `MigrateDatabase` and optionally other jobs (e.g. `SeedDatabase`) are ran sequentially.
+这些默认设置开箱即用，但简短的解释更有用. 在你 `app/Providers` 目录下的`TenancyServiceProvider` 文件来侦听租用事件。 默认情况i啊, 当一个租户被创建, 它运行 `JobPipeline` (这个包里的一个非常小的功能) 来确信 `CreateDatabase`, `MigrateDatabase` 和其他可选项 (e.g. `SeedDatabase`) 会被依次执行。
 
-In other words, it creates & migrates the tenant's database after he's created — and it does this in the correct order, because normal event-listener mapping would execute the listeners in some stupid order that would result in things like the database being migrated before it's created, or seeded before it's migrated.
+换言之, 在 created 事件后它会创建和迁移租户的数据 ，并且按照正确的顺序来执行。因为常规的事件侦听器（event-listener）会按照某种愚蠢的顺序执行，比如在数据库创建之前就开始执行迁移，或者在迁移之前执行填充示例（seeded）。
 
-## Central routes {#central-routes}
+## 中心路由 {#central-routes}
 
-We'll make a small change to the `app/Providers/RouteServiceProvider.php` file. Specifically, we'll make sure that central routes are registered on central domains only. 
+我们将在 `app/Providers/RouteServiceProvider.php` 文件中做一些小的改变，更具体地说是, 我们要确保中心路由（译注：不区分租户的路由）只在中心域名上被注册。
 
 ```php
 protected function mapWebRoutes()
@@ -112,7 +113,7 @@ protected function centralDomains(): array
 }
 ```
 
-If you're using Laravel 8, call these methods manually from your `RouteServiceProvider`'s `boot()` method, instead of the `$this->routes()` calls.
+如果你使用 Laravel 8, 需要在 `RouteServiceProvider`的 `boot()` 方法中手动调用, 来替代 `$this->routes()` 调用。
 
 ```php
 public function boot()
@@ -124,9 +125,9 @@ public function boot()
 }
 ```
 
-## Central domains {#central-domains}
+## 中心域名 {#central-domains}
 
-Now we need to actually specify the central domains. A central domain is a domain that serves your "central app" content, e.g. the landing page where tenants sign up. Open the `config/tenancy.php` file and add them in:
+现在我们需要来指定中心域名，中心域名是服务你"中心 app"的域名，例如：租户的登录页。打开 `config/tenancy.php` 文件并在里面添加:
 
 ```php
 'central_domains' => [
@@ -134,9 +135,9 @@ Now we need to actually specify the central domains. A central domain is a domai
 ],
 ```
 
-## Tenant routes {#tenant-routes}
+## 租户路由 {#tenant-routes}
 
-Your tenant routes will look like this by default:
+默认情况下，你的租户路由看起来像这样的:
 
 ```php
 Route::middleware([
@@ -150,9 +151,9 @@ Route::middleware([
 });
 ```
 
-These routes will only be accessible on tenant (non-central) domains — the `PreventAccessFromCentralDomains` middleware enforces that.
+这些路由仅能在租户域名（非中心域名）下访问 —— 由 `PreventAccessFromCentralDomains` 中间件强制实现。
 
-Let's make a small change to dump all the users in the database, so that we can actually see multi-tenancy working.
+让我们做一个小更改,将所有用户转储到数据库中, 这样我们就能看到多租户在运作了。
 
 ```php
 Route::get('/', function () {
@@ -161,13 +162,13 @@ Route::get('/', function () {
 });
 ```
 
-## Migrations {#migrations}
+## 迁移 {#migrations}
 
-To have users in tenant databases, let's move the `users` table migration to `database/migrations/tenant`. This will prevent the table from being created in the central database, and it will be instead created in the tenant database when a tenant is created — thanks to our event setup.
+要在租户数据库中拥有users表, 我们移动 `users` 表并迁移至 `database/migrations/tenant`下， 这将防止在中心数据库中被创建 —— 这得益于我们做了事件设置。
 
-## Creating tenants {#creating-tenants}
+## 创建租户 {#creating-tenants}
 
-For testing purposes, we'll create a tenant in `tinker` — no need to waste time creating controllers and views for now.
+出于测试目的, 我们将在 `tinker`中创建租户 —— 现在不需要浪费事件来创建控制器和试图。
 
 ```php
 $ php artisan tinker
@@ -178,7 +179,7 @@ $ php artisan tinker
 >>> $tenant2->domains()->create(['domain' => 'bar.localhost']);
 ```
 
-Now we'll create a user inside each tenant's database:
+现在我们将为每一个租户（在租户数据库中）创建一个用户表:
 
 ```php
 App\Tenant::all()->runForEach(function () {
@@ -186,7 +187,7 @@ App\Tenant::all()->runForEach(function () {
 });
 ```
 
-If you use Laravel 8, the the command is slightly different:
+如果你使用 Laravel 8, 这个命令有一些轻微的不同:
 
 ```php
 App\Models\Tenant::all()->runForEach(function () {
@@ -194,6 +195,6 @@ App\Models\Tenant::all()->runForEach(function () {
 });
 ```
 
-## Trying it out {#trying-it-out}
+## 试试看 {#trying-it-out}
 
-Now we visit `foo.localhost` in our browser and we should see a dump of the users table where we see some user. If we visit `bar.localhost`, we should see a different user.
+现在，在你浏览器里打开 `foo.localhost` ，我们应该能看到 users 表里的用户. 如果我们打开 `bar.localhost`，我们将能看到一个不同的用户.
