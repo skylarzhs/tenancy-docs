@@ -65,7 +65,7 @@
     <body class="font-sans antialiased">
         <div class="p-2">
             @include('_partials.header-docs')
-    
+
             <main role="main" class="">
                 <section class="px-6 py-4">
                     <div class="grid grid-cols-8 gap-4">

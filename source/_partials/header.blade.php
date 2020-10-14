@@ -15,7 +15,7 @@
     <nav class="md:flex hidden space-x-10">
       <div @click.away="flyoutMenuOpen = false" x-data="{ flyoutMenuOpen: false }" class="relative">
         <button type="button" @click="flyoutMenuOpen = !flyoutMenuOpen" x-state:on="Item active" x-state:off="Item inactive" :class="{ 'text-gray-900': flyoutMenuOpen, 'text-gray-500': !flyoutMenuOpen }" class="group hover:text-gray-900 focus:outline-none focus:text-gray-900 inline-flex items-center space-x-2 text-base font-medium leading-6 text-gray-500 transition duration-150 ease-in-out">
-          <span>Documentation
+          <span>文档
           </span>
           <svg x-state:on="Item active" x-state:off="Item inactive" class="group-hover:text-gray-500 group-focus:text-gray-500 w-5 h-5 text-gray-400 transition duration-150 ease-in-out" x-bind:class="{ 'text-gray-600': flyoutMenuOpen, 'text-gray-400': !flyoutMenuOpen }" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -32,10 +32,10 @@
                   </div>
                   <div class="space-y-1">
                     <p class="text-base font-medium leading-6 text-gray-900">
-                      Tenants
+                      租户
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
-                      Everything about the Tenant model. Creating tenants, customizing behavior and more.
+                     包括了租户模型的所有东西，创建租户，定制行为等。
                     </p>
                   </div>
                 </a>
@@ -47,10 +47,10 @@
                   </div>
                   <div class="space-y-1">
                     <p class="text-base font-medium leading-6 text-gray-900">
-                      Compared to other packages
+                      与其他包比较
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
-                      This package compared to other Laravel multi-tenancy packages.
+                      这包与其他 Laravel 多租户包比较。
                     </p>
                   </div>
                 </a>
@@ -60,10 +60,10 @@
                   </div>
                   <div class="space-y-1">
                     <p class="text-base font-medium leading-6 text-gray-900">
-                      Event system
+                      事件系统
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
-                      The glue that holds together the pieces that make up this package.
+                      像胶水一样把组成这个包的碎片组合在一起。
                     </p>
                   </div>
                 </a>
@@ -75,10 +75,10 @@
                   </div>
                   <div class="space-y-1">
                     <p class="text-base font-medium leading-6 text-gray-900">
-                      Integrations
+                      集成
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
-                      A list of verified integrations with other Laravel packages.
+                      与其他 Laravel 包集成并验证了的列表。
                     </p>
                   </div>
                 </a>
@@ -88,10 +88,10 @@
                   </div>
                   <div class="space-y-1">
                     <p class="text-base font-medium leading-6 text-gray-900">
-                      Configuration
+                      配置
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
-                      Configure this package to behave exactly the way that fits your needs.
+                      这包能正确地按照你的需求去配置行为。
                     </p>
                   </div>
                 </a>
@@ -101,9 +101,10 @@
                   </div>
                   <div class="space-y-1">
                     <p class="text-base font-medium leading-6 text-gray-900">
-                      Tenant identification
+                      租户识别
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
+                      关于识别租户的东西有：中间件、解析器（resolvers）和手动识别。
                       Everything about identifying tenants. Middlewares, resolvers, or manual identification.
                     </p>
                   </div>
@@ -113,11 +114,11 @@
                 <a href="/docs/v3" class="hover:bg-gray-100 flow-root p-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-md">
                   <div class="flex items-center space-x-3">
                     <div class="text-base font-medium leading-6 text-gray-900">
-                      Open documentation
+                      打开文档
                     </div>
                   </div>
                   <p class="text-sm leading-5 text-gray-500">
-                    View the full documentation.
+                    查看完整文档。
                   </p>
                 </a>
               </div>
@@ -126,14 +127,14 @@
                 <a href="https://sponsors.tenancyforlaravel.com" class="hover:bg-gray-100 flow-root p-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-md">
                   <div class="flex items-center space-x-3">
                     <div class="text-base font-medium leading-6 text-gray-900">
-                      Exclusive content
+                      独家内容
                     </div>
                     <span class="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-medium leading-5 bg-indigo-100 text-indigo-800">
-                      Sponsor-only
+                      赞助者专属
                     </span>
                   </div>
                   <p class="text-sm leading-5 text-gray-500">
-                    A collection of actionable solutions for common complex problems.
+                    针对常见复杂问题的可操作解决方案的集合。
                   </p>
                 </a>
               </div>
@@ -144,7 +145,7 @@
 
       <div x-data="{ flyoutMenuOpen: false }" @click.away="flyoutMenuOpen = false" class="relative">
         <button type="button" @click="flyoutMenuOpen = !flyoutMenuOpen" x-state:on="Item active" x-state:off="Item inactive" :class="{ 'text-gray-900': flyoutMenuOpen, 'text-gray-500': !flyoutMenuOpen }" class="group hover:text-gray-900 focus:outline-none focus:text-gray-900 inline-flex items-center space-x-2 text-base font-medium leading-6 text-gray-500 transition duration-150 ease-in-out">
-          <span>Business
+          <span>商业
           </span>
           <svg x-state:on="Item active" x-state:off="Item inactive" class="group-hover:text-gray-500 group-focus:text-gray-500 w-5 h-5 text-gray-400 transition duration-150 ease-in-out" x-bind:class="{ 'text-gray-600': flyoutMenuOpen, 'text-gray-400': !flyoutMenuOpen }" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -159,23 +160,23 @@
                     SaaS boilerplate
                   </p>
                   <p class="text-sm leading-5 text-gray-500">
-                    A fully featured Laravel application skeleton with multi-tenancy, tenant signup flow, Cashier billing and a Nova admin panel.
+                    一个完整的具有多租户特性的 Laravel 应用脚手架，租户注册流程，收银员计费和 Nova 管理平台。
                   </p>
                 </a>
                 <a href="/contact" class="hover:bg-gray-50 block p-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-md">
                   <p class="text-base font-medium leading-6 text-gray-900">
-                    Consulting
+                    咨询服务
                   </p>
                   <p class="text-sm leading-5 text-gray-500">
-                    We offer consulting services for businesses who need help with implementing our package or related features.
+                    我们为实现我们包或者相关特性的用户提供有偿咨询服务。
                   </p>
                 </a>
                 <a href="/contact" class="hover:bg-gray-50 block p-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-md">
                   <p class="text-base font-medium leading-6 text-gray-900">
-                    Audits
+                    审查（Audits）
                   </p>
                   <p class="text-sm leading-5 text-gray-500">
-                    Have the package author to review your tenancy implementation before you launch.
+                    在你应用程序上线之前，包的作者来检查你们租用的实现。
                   </p>
                 </a>
               </div>
@@ -188,19 +189,19 @@
         GitHub
       </a>
       <a target="_blank" href="https://discord.gg/vHjEyrw" class="hover:text-gray-900 focus:outline-none focus:text-gray-900 text-base font-medium leading-6 text-gray-500 transition duration-150 ease-in-out">
-        Discord
+        讨论
       </a>
       <a href="/donate" class="hover:text-gray-900 focus:outline-none focus:text-gray-900 text-base font-medium leading-6 text-gray-500 transition duration-150 ease-in-out">
-        Donate
+        赞助
       </a>
     </nav>
     <div class="md:flex md:flex-1 lg:w-0 items-center justify-end hidden space-x-8">
       <a href="/docs/v3/quickstart/" class="hover:text-gray-900 focus:outline-none focus:text-gray-900 text-base font-medium leading-6 text-gray-500 whitespace-no-wrap">
-        Tutorial
+        教程
       </a>
       <span class="inline-flex rounded-md shadow-sm">
         <a href="/docs/" class="hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md">
-          Documentation
+          文档
         </a>
       </span>
     </div>
@@ -229,7 +230,7 @@
                   <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                 </div>
                 <div class="text-base font-medium leading-6 text-gray-900">
-                  Tenants
+                  租户
                 </div>
               </a>
               <a href="/docs/v3/package-comparison" class="hover:bg-gray-50 flex items-center p-3 -m-3 space-x-4 transition duration-150 ease-in-out rounded-lg">
@@ -239,7 +240,7 @@
                   </svg>
                 </div>
                 <div class="text-base font-medium leading-6 text-gray-900">
-                  Compared to other packages
+                  与其他包比较
                 </div>
               </a>
               <a href="/docs/v3/event-system" class="hover:bg-gray-50 flex items-center p-3 -m-3 space-x-4 transition duration-150 ease-in-out rounded-lg">
@@ -247,7 +248,7 @@
                   <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
                 </div>
                 <div class="text-base font-medium leading-6 text-gray-900">
-                  Event system
+                  事件系统
                 </div>
               </a>
               <a href="/docs/v3/integrating" class="hover:bg-gray-50 flex items-center p-3 -m-3 space-x-4 transition duration-150 ease-in-out rounded-lg">
@@ -257,7 +258,7 @@
                   </svg>
                 </div>
                 <div class="text-base font-medium leading-6 text-gray-900">
-                  Integrations
+                  集成
                 </div>
               </a>
               <a href="/docs/v3/configuration" class="hover:bg-gray-50 flex items-center p-3 -m-3 space-x-4 transition duration-150 ease-in-out rounded-lg">
@@ -265,7 +266,7 @@
                   <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </div>
                 <div class="text-base font-medium leading-6 text-gray-900">
-                  Configuration
+                  配置
                 </div>
               </a>
               <a href="/docs/v3/tenant-identification" class="hover:bg-gray-50 flex items-center p-3 -m-3 space-x-4 transition duration-150 ease-in-out rounded-lg">
@@ -273,7 +274,7 @@
                   <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <div class="text-base font-medium leading-6 text-gray-900">
-                  Tenant identification
+                  租户识别
                 </div>
               </a>
             </nav>
@@ -285,30 +286,30 @@
               SaaS boilerplate
             </a>
             <a href="/contact" class="hover:text-gray-700 text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out">
-              Consulting
+              咨询服务
             </a>
             <a href="/contact" class="hover:text-gray-700 text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out">
-              Audits
+              审查
             </a>
             <a target="_blank" href="https://github.com/stancl/tenancy" class="hover:text-gray-700 text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out">
               GitHub
             </a>
             <a target="_blank" href="https://discord.gg/vHjEyrw" class="hover:text-gray-700 text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out">
-              Discord
+              讨论
             </a>
             <a href="/donate" class="hover:text-gray-700 text-base font-medium leading-6 text-gray-900 transition duration-150 ease-in-out">
-              Donate
+              赞助
             </a>
           </div>
           <div class="space-y-6">
             <span class="flex w-full rounded-md shadow-sm">
               <a href="/docs/v3" class="hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 flex items-center justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md">
-                Documentation
+                文档
               </a>
             </span>
             <p class="text-base font-medium leading-6 text-center text-gray-500">
               <a href="/docs/v3/quickstart" class="hover:text-indigo-500 text-indigo-600 transition duration-150 ease-in-out">
-                Tutorial
+                教程
               </a>
             </p>
           </div>

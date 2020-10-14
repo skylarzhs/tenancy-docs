@@ -5,44 +5,44 @@
 				<div class="md:grid md:grid-cols-2 md:gap-8">
 					<div>
 						<h4 class="text-sm font-semibold leading-5 tracking-wider text-gray-400 uppercase">
-							Documentation
+							文档
 						</h4>
 						<ul class="mt-4">
 							<li>
 								<a href="/docs/v3/tenants" class="text-base leading-6 text-gray-300 hover:text-white">
-									Tenants
+									租户
 								</a>
 							</li>
 							<li class="mt-4">
 								<a href="/docs/v3/event-system" class="text-base leading-6 text-gray-300 hover:text-white">
-									Event system
+									事件系统
 								</a>
 							</li>
 							<li class="mt-4">
 								<a href="/docs/v3/configuration" class="text-base leading-6 text-gray-300 hover:text-white">
-									Configuration
+									配置
 								</a>
 							</li>
 						</ul>
 					</div>
 					<div class="mt-12 md:mt-0">
 						<h4 class="text-sm font-semibold leading-5 tracking-wider text-gray-400 uppercase">
-							Documentation
+							文档
 						</h4>
 						<ul class="mt-4">
 							<li class="mt-4">
 								<a href="/docs/v3/package-comparison" class="text-base leading-6 text-gray-300 hover:text-white">
-									Compared to other packages
+									与其他包比较
 								</a>
 							</li>
 							<li class="mt-4">
 								<a href="/docs/v3/integrating" class="text-base leading-6 text-gray-300 hover:text-white">
-									Integrations
+									集成
 								</a>
 							</li>
 							<li class="mt-4">
 								<a href="/docs/v3/tenant-identification" class="text-base leading-6 text-gray-300 hover:text-white">
-									Tenant identification
+									租户识别
 								</a>
 							</li>
 						</ul>
@@ -51,7 +51,7 @@
 				<div class="md:grid md:grid-cols-2 md:gap-8">
 					<div class="">
 						<h4 class="text-sm font-semibold leading-5 tracking-wider text-gray-400 uppercase">
-							Business
+							商业
 						</h4>
 						<ul class="mt-4">
 							<li>
@@ -61,19 +61,19 @@
 							</li>
 							<li class="mt-4">
 								<a href="/contact" class="text-base leading-6 text-gray-300 hover:text-white">
-									Consulting
+									咨询服务
 								</a>
 							</li>
 							<li class="mt-4">
 								<a href="/contact" class="text-base leading-6 text-gray-300 hover:text-white">
-									Audits
+									审查
 								</a>
 							</li>
 						</ul>
 					</div>
 					<div class="mt-12 md:mt-0">
 						<h4 class="text-sm font-semibold leading-5 tracking-wider text-gray-400 uppercase">
-							Links
+							链接
 						</h4>
 						<ul class="mt-4">
 							<li>
@@ -88,12 +88,12 @@
 							</li>
 							<li class="mt-4">
 								<a href="https://discord.gg/7cpgPxv" class="text-base leading-6 text-gray-300 hover:text-white">
-									Discord
+									谈论
 								</a>
 							</li>
 							<li class="mt-4">
 								<a href="/donate" class="text-base leading-6 text-gray-300 hover:text-white">
-									Donate
+									赞助
 								</a>
 							</li>
 						</ul>
@@ -102,17 +102,17 @@
 			</div>
 			<div class="mt-8 xl:mt-0">
 				<h4 class="text-sm font-semibold leading-5 tracking-wider text-gray-400 uppercase">
-					Subscribe to our newsletter
+					订阅我们的邮件
 				</h4>
 				<p class="mt-4 text-base leading-6 text-gray-300">
-					Receive notifications about important releases, new packages and other updates.
+					接收关于重要发布、新的包和其他更新的通知。
 				</p>
 				<form action="https://github.us3.list-manage.com/subscribe/post?u=6a33c422777aedd88e9a9488e&amp;id=9b99f013b8" method="post" target="_blank" class="mt-4 sm:flex sm:max-w-md">
 					<input name="EMAIL" aria-label="Email address" type="email" required class="w-full px-5 py-3 text-base leading-6 text-gray-900 placeholder-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md appearance-none focus:outline-none focus:placeholder-gray-400" placeholder="Enter your email" />
 					<input type="hidden" value="8" name="group[27425][8]" id="mce-group[27425]-27425-3">
 					<div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
 						<button class="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
-							Subscribe
+							开始订阅
 						</button>
 					</div>
 				</form>
