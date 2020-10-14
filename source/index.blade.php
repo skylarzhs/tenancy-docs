@@ -5,7 +5,7 @@
   <div class="lg:grid lg:grid-cols-12 lg:gap-8">
     <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
       <div class="text-sm font-semibold tracking-wide text-gray-500 uppercase sm:text-base lg:text-sm xl:text-base">
-        New version 3
+        新版本 v3
       </div>
       <h2
       class="mt-1 text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
@@ -456,7 +456,7 @@ fill="none" viewBox="0 0 404 784">
             <div
             class="flex flex-col p-6 text-center border-t border-b border-gray-100 sm:border-0 sm:border-l sm:border-r">
             <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
-              Downloads
+              下载量
             </dt>
             <dd class="order-1 text-5xl font-extrabold leading-none text-indigo-600">
               50 000+
@@ -464,7 +464,7 @@ fill="none" viewBox="0 0 404 784">
           </div>
           <div class="flex flex-col p-6 text-center border-t border-gray-100 sm:border-0 sm:border-l">
             <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
-              Sponsors &lt;3
+              赞助商 &lt;3
             </dt>
             <dd class="order-1 text-5xl font-extrabold leading-none text-indigo-600">
               50+
@@ -485,10 +485,10 @@ fill="none" viewBox="0 0 404 784">
   <div class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:py-16 lg:px-8">
     <h2 class="text-3xl font-extrabold leading-normal tracking-tight text-center text-gray-900 sm:text-4xl">
       <p>
-        Want updates about big releases and product launches?
+        想要关于大版本和产品发布的更新?
       </p>
       <p>
-        <span class="text-indigo-600">Sign up for our newsletter.</span>
+        <span class="text-indigo-600">订阅我们邮件列表.</span>
       </p>
     </h2>
     <form action="https://github.us3.list-manage.com/subscribe/post?u=6a33c422777aedd88e9a9488e&amp;id=9b99f013b8" method="post" target="_blank" class="justify-center mt-8 sm:flex">
@@ -499,7 +499,7 @@ fill="none" viewBox="0 0 404 784">
       <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
         <button
         class="flex items-center justify-center w-full px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-        Notify me
+        通知我
       </button>
     </div>
   </form>
@@ -510,7 +510,7 @@ fill="none" viewBox="0 0 404 784">
   <div class="max-w-screen-xl px-4 py-12 mx-auto sm:py-16 sm:px-6 lg:px-8">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-3xl font-extrabold leading-9 text-center text-gray-900 sm:text-4xl sm:leading-10">
-        Frequently asked questions
+        常见问答
       </h2>
       <div class="pt-6 mt-6 border-t-2 border-gray-200">
         <dl>
