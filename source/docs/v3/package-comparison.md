@@ -39,9 +39,9 @@ section: content
 
 它与 stancl/tenancy v2 类似, 但是只有功能更少一些。
 
-The only benefit I see in this package compared to v2 of stancl/tenancy is that it uses Eloquent out of the box, which makes things like Cashier integration easier. But, that's irrelevant since we're in v3 already and v3 uses Eloquent.
+唯一的好处是我看到这个包与 stancl/tenancy v2 相比，它使用了开箱即用的 Eloquent ，那样会让集成收银台更加容易，但这无关紧要，我们在 v3 中使用了 Eloquent。
 
-So, I suggest you consider this package only if you value simplicity for some reason, and aren't building anything with any amount of complexity and need for "business features".
+因此，我建议只有当您出于某种原因重视简单性，和不构建任何具有复杂性的东西，并且需要“业务特性”时，才考虑使用这个包。
 
 ## stancl/tenancy {#stancl-tenancy}
 
@@ -49,10 +49,10 @@ So, I suggest you consider this package only if you value simplicity for some re
 
 我实际上只会考虑用我的包（这是当然咯），如果你必须**非常**定制可以考虑 tenancy/tenancy包，尽管我在99%的应用中看不到这样的原因。
 
-这个包努力做到像 tenancy/tenancy 那样灵活，而且还为您提供了大量的开箱即用特性和其他工具，It continues its path as the first package to have been using the automatic approach with adding many more features — most of which are "enterprise" features, in v3.
+这个包努力做到像 tenancy/tenancy 那样灵活，而且还为您提供了大量的开箱即用特性和其他工具，它会以它的方式（最先使用自动方式添加许多的特性的包）继续下去 —— 在v3中，其中大多数是“企业版”特性。
 
-To give you an incomplete-but-good-enough list of features, this package supports:
 为了给你足够好的功能，这个包提供：
+
 - 多数据库租用
     - 创建数据库（译注：通过程序创建）
         - MySQL
