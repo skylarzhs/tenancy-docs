@@ -127,33 +127,33 @@ return [
     'v3' => [
         'SaaS boilerplate' => 'https://tenancyforlaravel.com/saas-boilerplate/',
         'GitHub' => 'https://github.com/stancl/tenancy',
-        'Donate' => 'https://tenancyforlaravel.com/donate',
-        'Upgrading from 2.x' => 'upgrading',
+        '赞助' => 'https://tenancyforlaravel.com/donate',
+        '从 2.x 升级' => 'upgrading',
 
-        'Introduction' => [
+        '介绍' => [
             'children' => [
-                'Introduction' => 'introduction',
-                'Quickstart' => 'quickstart',
-                'Installation' => 'installation',
-                'Configuration' => 'configuration',
-                'Compared to other packages' => 'package-comparison',
+                '介绍' => 'introduction',
+                '快速开始' => 'quickstart',
+                '安装' => 'installation',
+                '配置' => 'configuration',
+                '与其他包比较' => 'package-comparison',
             ],
         ],
 
-        'Concepts' => [
+        '概念' => [
             'children' => [
-                'The two applications' => 'the-two-applications',
-                'Tenants' => 'tenants',
-                'Domains' => 'domains',
-                'Event system' => 'event-system',
-                'Routes' => 'routes',
-                'Tenancy bootstrappers' => 'tenancy-bootstrappers',
-                'Optional Features' => [
+                '两个应用程序' => 'the-two-applications',
+                '租户' => 'tenants',
+                '域名' => 'domains',
+                '事件系统' => 'event-system',
+                '路由' => 'routes',
+                '租户引导' => 'tenancy-bootstrappers',
+                '可选特征' => [
                     'url' => 'optional-features',
                     'children' => [
-                        'User impersonation' => 'features/user-impersonation',
+                        '用户模拟' => 'features/user-impersonation',
                         'Telescope tags' => 'features/telescope-tags',
-                        'Tenant Config' => 'features/tenant-config',
+                        '租户配置' => 'features/tenant-config',
                         'Cross-domain redirect' => 'features/cross-domain-redirect',
                         'Universal routes' => 'features/universal-routes',
                     ],
@@ -161,45 +161,45 @@ return [
             ],
         ],
 
-        'Tenancy modes' => [
+        '租户模式' => [
             'children' => [
-                'Automatic mode' => 'automatic-mode',
-                'Manual mode' => 'manual-mode',
+                '自动模式' => 'automatic-mode',
+                '手动模式' => 'manual-mode',
             ],
         ],
 
-        'Single-database tenancy' => [
+        '单数据库方式租用' => [
             'children' => [
-                'Single-database tenancy' => 'single-database-tenancy',
+                '单数据库方式租用' => 'single-database-tenancy',
             ],
         ],
 
-        'Identifying tenants' => [
+        '识别租户' => [
             'children' => [
-                'Tenant identification' => 'tenant-identification',
-                'Early identification' => 'early-identification',
+                '租户识别' => 'tenant-identification',
+                '早期识别' => 'early-identification',
             ],
         ],
 
-        'Multi-database tenancy' => [
+        '多数据库方式租用' => [
             'children' => [
-                'Multi-database tenancy' => 'multi-database-tenancy',
-                'Migrations' => 'migrations',
-                'Customizing databases' => 'customizing-databases',
-                'Synced resources between tenants' => 'synced-resources-between-tenants',
+                '多数据库方式租用' => 'multi-database-tenancy',
+                '迁移' => 'migrations',
+                '数据库定制' => 'customizing-databases',
+                '租户间同步资源' => 'synced-resources-between-tenants',
                 'Session scoping' => 'session-scoping',
-                'Queues' => 'queues',
+                '队列' => 'queues',
             ],
         ],
 
-        'Digging deeper' => [
+        '深入了解' => [
             'children' => [
-                'Manual initialization' => 'manual-initialization',
-                'Testing' => 'testing',
-                'Integrating with other packages' => [
+                '手动初始化' => 'manual-initialization',
+                '测试' => 'testing',
+                '与其他包集成' => [
                     'url' => 'integrating',
                     'children' => [
-                        'Spatie packages' => 'integrations/spatie',
+                        'Spatie 包' => 'integrations/spatie',
                         'Horizon' => 'integrations/horizon',
                         'Passport' => 'integrations/passport',
                         'Nova' => 'integrations/nova',
@@ -207,24 +207,24 @@ return [
                         'Livewire' => 'integrations/livewire',
                     ],
                 ],
-                'Console commands' => 'console-commands',
-                'Cached lookup' => 'cached-lookup',
-                'Real-time facades' => 'realtime-facades',
-                'Tenant maintenance mode' => 'tenant-maintenance-mode',
+                '控制台命令行' => 'console-commands',
+                '缓存查询' => 'cached-lookup',
+                '实时门面' => 'realtime-facades',
+                '租户维护模式' => 'tenant-maintenance-mode',
             ],
         ],
 
-        'Sponsor-only content' => [
+        '赞助者专属内容' => [
             'children' => [
-                'Exclusive content for sponsors' => 'https://sponsors.tenancyforlaravel.com/',
-                'Billable Tenants with Cashier' => 'https://sponsors.tenancyforlaravel.com/billable-tenants-with-cashier',
-                'Central (SSO-like) Authentication' => 'https://sponsors.tenancyforlaravel.com/central-sso-like-authentication',
-                'Customer HTTPS Certificates with Ploi' => 'https://sponsors.tenancyforlaravel.com/customer-https-certificates-with-ploi',
-                'Deploying Applications to Ploi' => 'https://sponsors.tenancyforlaravel.com/deploying-applications-to-ploi',
-                'Frictionless Testing Setup' => 'https://sponsors.tenancyforlaravel.com/frictionless-testing-setup',
-                'Queued Onboarding Flow' => 'https://sponsors.tenancyforlaravel.com/queued-onboarding-flow',
-                'Structuring the Codebase for Clarity' => 'https://sponsors.tenancyforlaravel.com/structuring-the-codebase-for-clarity',
-                'Tenant Database Management with Ploi' => 'https://sponsors.tenancyforlaravel.com/tenant-database-management-with-ploi',
+                '赞助商独家内容' => 'https://sponsors.tenancyforlaravel.com/',
+                '租户和使用Cashier计费' => 'https://sponsors.tenancyforlaravel.com/billable-tenants-with-cashier',
+                '中心授权 (类似SSO) ' => 'https://sponsors.tenancyforlaravel.com/central-sso-like-authentication',
+                '使用 Ploi 定制 https 证书' => 'https://sponsors.tenancyforlaravel.com/customer-https-certificates-with-ploi',
+                '在 Ploi 上部署应用程序' => 'https://sponsors.tenancyforlaravel.com/deploying-applications-to-ploi',
+                'frictionless testing setup' => 'https://sponsors.tenancyforlaravel.com/frictionless-testing-setup',
+                '员工培训流程' => 'https://sponsors.tenancyforlaravel.com/queued-onboarding-flow',
+                '梳理代码和结构变得更清晰' => 'https://sponsors.tenancyforlaravel.com/structuring-the-codebase-for-clarity',
+                '使用 Ploi 管理租户数据库' => 'https://sponsors.tenancyforlaravel.com/tenant-database-management-with-ploi',
                 'Universal (Central & Tenant) Nova' => 'https://sponsors.tenancyforlaravel.com/universal-central-and-tenant-nova',
             ],
         ],
