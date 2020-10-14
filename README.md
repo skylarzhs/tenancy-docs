@@ -1,4 +1,4 @@
-# stancl/tenancy docs
+# stancl/tenancy 中文文档
 
 For the main repository, see [stancl/tenancy](https://github.com/stancl/tenancy).
 
