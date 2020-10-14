@@ -1,20 +1,20 @@
 ---
-title: The two applications
+title: 两种应用程序
 extends: _layouts.documentation
 section: content
 ---
 
-# The two applications {#the-two-applications}
+# 两种应用程序 {#the-two-applications}
 
-You will find these two terms a lot throughout this documentation:
+你将会在整个文档中发现这两个术语:
 
-- central application
-- tenant application
+- 中心应用程序（central application）
+- 租户应用程序（tenant application）
 
-Those terms refer to the parts of your application that house the central logic, and the tenant logic.
+这些术语指不应用程序中包含中心逻辑和租户逻辑的部分。
 
-The tenant application is executed in tenant context — usually with the tenant's database, cache, etc. The central application is executed **when there is no tenant**.
+这个租户应用程序是在租户环境中执行的 —— 通常使用租户数据库、缓存等。中心应用程序是**当没有租户**时执行。
 
-The central application will house your signup page **where tenants are created**, your admin panel used to **manage your tenants**, etc.
+中心应用程序将创建你的注册页面 **在这里创建租户**，你的管理界面用于 **管理你的租户**等。
 
-The tenant application will likely house the larger part of your application — the real service being used by your tenants.
+租户应用程序可能占据你的大部分应用程序 —— 租户会使用的租户应用程序提供的服务（译注：租户的功能占据了大部分）。
