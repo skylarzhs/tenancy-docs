@@ -76,8 +76,8 @@
                             <div class="markdown">
                                 @if($page->version() !== $page->defaultVersion)
                                     <div class="bg-yellow-50 border border-yellow-100 text-yellow-800 w-full px-4 py-3 rounded-lg">
-                                        You're looking at {{ $page->version() }} documentation. The current version is {{ $page->defaultVersion }}.
-                                        You can find the docs for the current version <a href="/docs/{{ $page->defaultVersion }}">here</a>.
+                                        你正在查看 {{ $page->version() }} 版本的文档，当前版本为 {{ $page->defaultVersion }}，
+                                        你可以从 <a href="/docs/{{ $page->defaultVersion }}">这里</a> 查看当前版本的文档。
                                     </div>
                                 @endif
 
