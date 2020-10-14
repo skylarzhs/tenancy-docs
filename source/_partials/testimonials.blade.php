@@ -7,8 +7,8 @@
       <blockquote class="mt-8 md:flex-grow md:flex md:flex-col">
         <div class="max-w-3xl mx-auto text-xl font-medium leading-8 text-left text-gray-900">
         <p>
-          &ldquo;Tenancy for Laravel allowed us to effortlessly and quickly integrate the needed
-          landlord/tenant functionality for our SaaS platform. It fits our needs perfectly.&rdquo;
+          &ldquo;Tenancy for Laravel 允许我们轻松又快速的为我们的SaaS平台集成了landlord/tenant中的功能。
+          它完全符合我们的要求。&rdquo;
         </p>
       </div>
         <footer class="mt-8">
@@ -34,7 +34,8 @@
       <blockquote class="mt-8 md:flex-grow md:flex md:flex-col">
         <div class="max-w-3xl mx-auto text-xl font-medium leading-8 text-left text-gray-900">
           <p>
-            &ldquo;This package enabled us to abstract all the context switching to focus our development efforts elsewhere. That resulted in significant performance increase. The event driven architecture is powerful, flexible and bends to all our needs.&rdquo;
+
+            &ldquo;这个包能让我们抽象出上下文切换（译注：不用考虑具体的租户操作，就跟编写单体应用一样），进而把焦点集中在其他地方上开发，这能大大提高开发效率. 这个事件架构也很强大, 能灵活满足我们的需求。&ldquo;
           </p>
         </div>
         <footer class="mt-8">

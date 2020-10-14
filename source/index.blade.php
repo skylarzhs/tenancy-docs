@@ -9,24 +9,24 @@
       </div>
       <h2
       class="mt-1 text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
-      Tenancy for Laravel
+      Tenancy for Laravel 中文版
       <!-- <br class="hidden md:inline" />
         <span class="">is the good stuff</span> -->
       </h2>
       <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-        A flexible multi-tenancy package for Laravel. Single &amp; multi-database tenancy, automatic &amp; manual mode, event-based architecture. Integrates perfectly with other packages.
+        一个灵活的 Laravel 多租户包，单数据库与多数据库租用， 自动与手动模式，基于事件架构，与其他包完美兼容。
       </p>
       <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
         <div class="rounded-md shadow">
           <a href="/docs"
           class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline md:py-4 md:text-lg md:px-10">
-          Documentation
+          文档
         </a>
       </div>
       <div class="mt-3 sm:mt-0 sm:ml-3">
         <a href="/docs/v3/quickstart/"
         class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-indigo-700 transition duration-150 ease-in-out bg-indigo-100 border border-transparent rounded-md hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300 md:py-4 md:text-lg md:px-10">
-        Tutorial
+        教程
       </a>
     </div>
   </div>
@@ -48,13 +48,13 @@ width="640" height="784" fill="none" viewBox="0 0 640 784">
 <div class="relative justify-end hidden w-full lg:flex">
   <div class="flex justify-end inline-block p-8 pr-8 text-base leading-relaxed text-blue-400 bg-indigo-900 rounded-lg shadow-lg xl:text-lg xl:pr-16">
     <pre>
-<span class="text-blue-100">// Create a tenant</span>
+<span class="text-blue-100">// 创建一个租户</span>
 $tenant = Tenant::create();
 $tenant-&gt;createDomain([
   'domain' => 'acme.com',
 ]);
 
-<span class="text-blue-100">// Write your app like you're used to</span>
+<span class="text-blue-100">// 像你习惯的那样编写你的应用程序</span>
 Order::where('status', 'shipped')-&gt;get();
 Cache::get('order_count');
 asset('logo.png');
@@ -80,22 +80,22 @@ dispatch(new SendOrderCreatedMail);</pre>
 
 <div class="relative">
   <h3 class="text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl sm:leading-10">
-    A package that fits your needs
+    一个适合你需要的包
   </h3>
   <p class="max-w-3xl mx-auto mt-4 text-xl leading-7 text-center text-gray-500">
-    <strong class="font-medium">stancl/tenancy</strong> is a flexible multi-tenancy Laravel package that comes with <strong class="font-medium">lots</strong> of features out-of-the-box and doesn't stand in your way when you need anything custom.
+    <strong class="font-medium">stancl/tenancy</strong> 是一个灵活的 Laravel 包，它含有 <strong class="font-medium">许多</strong> 开箱即用的特性（out-of-the-box），并且不会妨碍你的编程习惯。
   </p>
 </div>
 
 <div class="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
   <div class="relative">
     <h4 class="text-2xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-3xl sm:leading-9">
-      Automatic tenancy
+      自动租用
     </h4>
     <p class="mt-3 text-lg leading-7 text-gray-600">
-      Instead of forcing you to change how you write your code, the package by default bootstraps tenancy automatically, in the background. Database connections are switched, caches are separated, filesystems are prefixed, etc.
+      不会强制改变你写代码的方式，这个包默认开始自动租用，数据库连接自动切换、缓存分离的、文件系统有前缀区分的等。
     </p>
-    
+
     <ul class="mt-10">
       <li>
         <div class="flex">
@@ -105,9 +105,9 @@ dispatch(new SendOrderCreatedMail);</pre>
           </div>
         </div>
         <div class="ml-4">
-          <h5 class="text-lg font-medium leading-6 text-gray-900">Automatic data separation</h5>
+          <h5 class="text-lg font-medium leading-6 text-gray-900">自动数据分离</h5>
           <p class="mt-2 text-base leading-6 text-gray-600">
-            Out of the box, the package makes the following things tenant-aware: databases, caches, filesystems, queues, redis stores. This means that if you've already written your app and are looking to make it multi-tenant, <strong>you don't have to change anything!</strong>
+            开箱即用， 这个包让数据库, 缓存, 文件系统, 队列, redis 存储实现租户识别（tenant-aware），这意味着对于你已开发的app<strong>无须做任何代码修改</strong>，就能实现多租户。
           </p>
         </div>
       </div>
@@ -122,9 +122,9 @@ dispatch(new SendOrderCreatedMail);</pre>
         </div>
       </div>
       <div class="ml-4">
-        <h5 class="text-lg font-medium leading-6 text-gray-900">Integrates with other packages</h5>
+        <h5 class="text-lg font-medium leading-6 text-gray-900">和其他包整合</h5>
         <p class="mt-2 text-base leading-6 text-gray-600">
-          Since the automatic mode changes the <em>default</em> database connection, most other packages will use this connection too. This means that you can do awesome things such as <strong>using Laravel Nova inside the tenant application</strong> to manage the tenant's resources.
+          当自动模式改变 <em>默认</em> 数据库, 大多数其他包也使用这个连接. 这意味着你可以做一些很棒的事情,比如 <strong>在租户应用程序里用Laravel Nova</strong> 去管理租户的资源。
         </p>
       </div>
     </div>
@@ -137,9 +137,9 @@ dispatch(new SendOrderCreatedMail);</pre>
         </div>
       </div>
       <div class="ml-4">
-        <h5 class="text-lg font-medium leading-6 text-gray-900">Fully testable</h5>
+        <h5 class="text-lg font-medium leading-6 text-gray-900">完全可测试的</h5>
         <p class="mt-2 text-base leading-6 text-gray-600">
-          Many other tenancy packages have a terrible track record when it comes to testability. We find that unacceptable. <strong>With this package, you can test everything.</strong> The central application, the tenant application, and everything in between &mdash; including the tenant registration flow.
+          在可测试性方面,许多其他租用包的记录都很糟糕，我们认为这是不可接受的。<strong>使用这个包，您可以测试所有东西.</strong> 中心应用、租户应用和中心应用与租户应用之间的代码（包括租户注册流程）。
         </p>
       </div>
     </div>
@@ -177,12 +177,12 @@ fill="none" viewBox="0 0 404 784">
   <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
     <div class="lg:col-start-2">
       <h4 class="text-2xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-3xl sm:leading-9">
-        Extreme flexibility
+        极大的灵活性
       </h4>
       <p class="mt-3 text-lg leading-7 text-gray-600">
-        Version 3 is heavily focused on flexibility, but without sacrificing features. Even though everything is customizable, the defaults will likely suit you for the large part.
+        v3 在很大程度上都聚焦在灵活性上，但也不会牺牲特性，甚至任何东西都是可定制的。在大多数情况下，默认设置都适合你。
       </p>
-      
+
       <ul class="mt-10">
         <li>
           <div class="flex">
@@ -192,9 +192,9 @@ fill="none" viewBox="0 0 404 784">
             </div>
           </div>
           <div class="ml-4">
-            <h5 class="text-lg font-medium leading-6 text-gray-900">Event-based architecture</h5>
+            <h5 class="text-lg font-medium leading-6 text-gray-900">基于事件架构</h5>
             <p class="mt-2 text-base leading-6 text-gray-600">
-              All of the tenancy bootstrapping logic, post-tenant-creation logic, and most other things, happen as a result of events firing. You can customize every single bit.
+              所有的租户引导（bootstrapping）逻辑，租户创建（post-tenant-creation）逻辑，和其他大多数事情都是事件触发的，并且可定制它们。
             </p>
           </div>
         </div>
@@ -207,9 +207,9 @@ fill="none" viewBox="0 0 404 784">
           </div>
         </div>
         <div class="ml-4">
-          <h5 class="text-lg font-medium leading-6 text-gray-900">Single or multi-database tenancy</h5>
+          <h5 class="text-lg font-medium leading-6 text-gray-900">单数据库和双数据库租用</h5>
           <p class="mt-2 text-base leading-6 text-gray-600">
-            Don't want to use the database-per-tenant approach? No problem, we provide you with model traits for scoping models to the current tenant, <strong>including models that aren't related to the tenant directly.</strong>
+            不想使用数据库前缀的方式？没问题，我们给你提供模型特征(译注：模型traits文件)来限制 model的范围为当前租户，<strong>以及无须关联到租户目录的模型文件。</strong>
           </p>
         </div>
       </div>
@@ -222,10 +222,9 @@ fill="none" viewBox="0 0 404 784">
         </div>
       </div>
       <div class="ml-4">
-        <h5 class="text-lg font-medium leading-6 text-gray-900">Manual tenancy</h5>
+        <h5 class="text-lg font-medium leading-6 text-gray-900">手动租用</h5>
         <p class="mt-2 text-base leading-6 text-gray-600">
-          Prefer specifying database connections instead of changing the default connection? No problem, we have model
-          traits prepared.
+          想要指定数据库连接而不是修改默认连接？也没问题，我们准备了模型traits文件。
         </p>
       </div>
     </div>
@@ -256,22 +255,22 @@ fill="none" viewBox="0 0 404 784">
     <div>
       <h3
       class="text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl sm:leading-10">
-      Packed with features
+      功能特点
     </h3>
     <p class="max-w-3xl mx-auto mt-4 text-xl leading-7 text-center text-gray-500">
-      This package has the most features out of all multi-tenancy packages for Laravel.
+      这个包拥有在Laravel的所有多租户包中的大多数特性。
     </p>
   </div>
-  
+
   <div class="mt-12 lg:grid lg:grid-cols-3 lg:gap-8">
     <div>
       <div class="flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md">
         <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
       </div>
       <div class="mt-5">
-        <h5 class="text-lg font-medium leading-6 text-gray-900">Shared users between tenants</h5>
+        <h5 class="text-lg font-medium leading-6 text-gray-900">租户间共享用户</h5>
         <p class="mt-2 text-base leading-6 text-gray-600">
-          Need to use the database-per-tenant approach but also need to have users that belong to multiple tenants? We've got you covered. Our Resource Syncing feature lets you synchronize any database resources between specific tenants' databases.
+          需要使用一个租户一个数据库（database-per-tenant）的方式，又想要这些用户属于多个租户？我们也能搞定，我们的资源同步特性让你在两个租户数据库之间同步任何数据库资源。
         </p>
       </div>
     </div>
@@ -280,9 +279,9 @@ fill="none" viewBox="0 0 404 784">
         <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       </div>
       <div class="mt-5">
-        <h5 class="text-lg font-medium leading-6 text-gray-900">User impersonation</h5>
+        <h5 class="text-lg font-medium leading-6 text-gray-900">用户模拟</h5>
         <p class="mt-2 text-base leading-6 text-gray-600">
-          Want to impersonate a user inside a tenant's database from the central context? Or even from another tenant's context? Just enable the user impersonation feature in the config.
+          想要从中心应用程序里去模拟一个用户访问租户数据库？或者甚至从一个租户应用中去访问另一个租户数据库？仅需要在配置文件中允许用户模拟特性即可。
         </p>
       </div>
     </div>
@@ -291,9 +290,9 @@ fill="none" viewBox="0 0 404 784">
         <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
       </div>
       <div class="mt-5">
-        <h5 class="text-lg font-medium leading-6 text-gray-900">Works with any database</h5>
+        <h5 class="text-lg font-medium leading-6 text-gray-900">多种数据库可用</h5>
         <p class="mt-2 text-base leading-6 text-gray-600">
-          Need to separate tenant databases on MySQL/PostgreSQL/SQLite? No problem. Or maybe you want to use PostgreSQL schemas instead? We can do that too.
+          需要单独的租户数据库为 MySQL/PostgreSQL/SQLite? 没问题，或者你也许想用PostgreSQL数据库来代替？ 那也是可以的。
         </p>
       </div>
     </div>
@@ -305,23 +304,23 @@ fill="none" viewBox="0 0 404 784">
   <div class="max-w-screen-xl px-4 py-12 mx-auto text-center sm:px-6 lg:py-16 lg:px-8">
     <h2 class="text-3xl font-extrabold leading-normal tracking-tight text-center text-gray-900 sm:text-4xl">
       <p>
-        Ready to try it?
+        准备试一下？
       </p>
       <p>
-        <span class="text-indigo-600">Read the documentation.</span>
+        <span class="text-indigo-600">阅读文档</span>
       </p>
     </h2>
     <div class="flex justify-center mt-8">
       <div class="inline-flex rounded-md shadow">
         <a href="/docs"
         class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-        Documentation
+        文档
       </a>
     </div>
     <div class="inline-flex ml-3">
       <a href="/docs/v3/quickstart/"
       class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-indigo-700 transition duration-150 ease-in-out bg-indigo-100 border border-transparent rounded-md hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300">
-      Tutorial
+      教程
     </a>
   </div>
 </div>
@@ -333,22 +332,21 @@ fill="none" viewBox="0 0 404 784">
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
       <div>
         <h2 class="text-3xl font-extrabold leading-9 text-gray-900 sm:text-4xl sm:leading-10">
-          Awesome integration with other packages
+          与其他包完美集成
         </h2>
         <p class="max-w-3xl mt-3 text-lg leading-7 text-gray-600">
-          Apart from saving you a huge amount of time, the automatic mode has another great side effect: it lets you integrate almost any other package with no issues. No more model traits!
-        </p>
+          除了能为你节约大量的时间，这个自动租户模式还有个附加效果：它能让你与大多数其他包集成，不用在model中使用traits（译注：用traits来区分租户）。</p>
         <div class="mt-8 sm:flex">
           <div class="rounded-md shadow">
             <a href="/docs"
             class="flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-            Documentation
+            文档
           </a>
         </div>
         <div class="mt-3 sm:mt-0 sm:ml-3">
           <a href="/docs/v3/quickstart/"
           class="flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-indigo-700 transition duration-150 ease-in-out bg-indigo-100 border border-transparent rounded-md hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:shadow-outline focus:border-indigo-300">
-          Tutorial
+          教程
         </a>
       </div>
     </div>
@@ -434,10 +432,10 @@ fill="none" viewBox="0 0 404 784">
   <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl font-extrabold leading-9 text-gray-900 sm:text-4xl sm:leading-10">
-        Trusted by developers
+        可信的开发者
       </h2>
       <p class="mt-3 text-xl leading-7 text-gray-600 sm:mt-4">
-        This package powers many production applications on many different hosting platforms.
+        这个包在许多不同的平台提供生产环境的应用。
       </p>
     </div>
   </div>
@@ -522,7 +520,7 @@ fill="none" viewBox="0 0 404 784">
               class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
               x-bind:aria-expanded="openPanel === 1" aria-expanded="true">
               <span class="font-medium text-gray-900">
-                Is the package ready for production?
+                这个包是否为生产环境准备好了？
               </span>
               <span class="flex items-center ml-6 h-7">
                 <svg class="w-6 h-6 transform -rotate-180"
@@ -538,8 +536,7 @@ fill="none" viewBox="0 0 404 784">
         </dt>
         <dd class="pr-12 mt-2" x-show="openPanel === 1">
           <p class="text-base leading-6 text-gray-700">
-            Yes! The package is in its third major version and has been stable since February 2019. Many people are
-            using it in production.
+            是的！这个包已进入第三个大版本，并且从2019年2月开始稳定运行，许多人在生产环境中使用。
           </p>
         </dd>
       </div>
@@ -551,7 +548,7 @@ fill="none" viewBox="0 0 404 784">
             class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
             x-bind:aria-expanded="openPanel === 2">
             <span class="font-medium text-gray-900">
-              Does the package only support multi&#8209;database tenancy?
+              这包仅提供多数据库（multi-database）租用方式？
             </span>
             <span class="flex items-center ml-6 h-7">
               <svg class="w-6 h-6 transform rotate-0"
@@ -567,9 +564,8 @@ fill="none" viewBox="0 0 404 784">
       </dt>
       <dd class="pr-12 mt-2" x-show="openPanel === 2" style="display: none;">
         <p class="text-base leading-6 text-gray-700">
-          No, the package supports multi-database tenancy as well as single-database tenancy. For multi-database
-          tenancy, it comes with classes for managing MySQL/SQLite/PostgreSQL databases or schemas and for
-          single-database tenancy it comes with model scopes and traits.
+          不是的，这个包提供多数据库租用方式就像单数据库一样。对于多数据库租用，它提供了管理 MySQL/SQLite/PostgreSQL 数据库或表的类，
+          对于单数据库租用，它提供了model scopes 和 traits。
         </p>
       </dd>
     </div>
@@ -582,7 +578,7 @@ fill="none" viewBox="0 0 404 784">
         class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
         x-bind:aria-expanded="openPanel === 3">
         <span class="font-medium text-gray-900">
-          Is this package flexible?
+          这个包灵活吗？
         </span>
         <span class="flex items-center ml-6 h-7">
           <svg class="w-6 h-6 transform rotate-0"
@@ -598,9 +594,7 @@ fill="none" viewBox="0 0 404 784">
   </dt>
   <dd class="pr-12 mt-2" x-show="openPanel === 3" style="display: none;">
     <p class="text-base leading-6 text-gray-700">
-      Yes! Version 3 is focused heavily on flexibility. The package comes with great defaults for
-      bootstrapping tenancy automatically based on domains, but if you need to customize anything, or add
-      any behavior — you can do that very easily.
+      是的！ V3 非常注重灵活性，这个包默认就能基于域名区分租户，但是你如果需要定制它或添加一些行为，你也可以轻松搞定。
     </p>
   </dd>
 </div>
@@ -613,7 +607,7 @@ fill="none" viewBox="0 0 404 784">
       class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
       x-bind:aria-expanded="openPanel === 4">
       <span class="font-medium text-gray-900">
-        Can I use Laravel Nova with this package?
+        我能在这包里使用 Laravel Nova 吗？
       </span>
       <span class="flex items-center ml-6 h-7">
         <svg class="w-6 h-6 transform rotate-0"
@@ -629,7 +623,7 @@ fill="none" viewBox="0 0 404 784">
 </dt>
 <dd class="pr-12 mt-2" x-show="openPanel === 4" style="display: none;">
   <p class="text-base leading-6 text-gray-700">
-    Yes! You can use Nova both to manage tenants and to manage resources inside tenant databases.
+    是的！你可以使用 Nova 来管理租户和管理租户数据库中的资源。
   </p>
 </dd>
 </div>
@@ -642,7 +636,7 @@ fill="none" viewBox="0 0 404 784">
       class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
       x-bind:aria-expanded="openPanel === 5">
       <span class="font-medium text-gray-900">
-        Does the package work with [package name]?
+        能和 XX包[包名]一起使用吗？
       </span>
       <span class="flex items-center ml-6 h-7">
         <svg class="w-6 h-6 transform rotate-0"
@@ -658,8 +652,7 @@ fill="none" viewBox="0 0 404 784">
 </dt>
 <dd class="pr-12 mt-2" x-show="openPanel === 5" style="display: none;">
   <p class="text-base leading-6 text-gray-700">
-    Likely yes. The automatic mode of tenancy integrates perfectly with 99% of packages with little to no
-    code changes required.
+    几乎能，这个自动租用模式完美继承了99%的包，几乎没有代码更改要求。
   </p>
 </dd>
 </div>
@@ -672,7 +665,7 @@ fill="none" viewBox="0 0 404 784">
       class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
       x-bind:aria-expanded="openPanel === 6">
       <span class="font-medium text-gray-900">
-        Can I use Laravel Vapor to deploy an application using this package?
+        我能用 Laravel Vapor 来部署用了这包的应用程序吗?
       </span>
       <span class="flex items-center ml-6 h-7">
         <svg class="w-6 h-6 transform rotate-0"
@@ -688,7 +681,7 @@ fill="none" viewBox="0 0 404 784">
 </dt>
 <dd class="pr-12 mt-2" x-show="openPanel === 6" style="display: none;">
   <p class="text-base leading-6 text-gray-700">
-    Yes, many people are using the package on Vapor and reported no issues at all.
+    是的，许多人在 Vapor 上使用呢这个包，并且没有问题报告。
   </p>
 </dd>
 </div>
@@ -701,7 +694,7 @@ fill="none" viewBox="0 0 404 784">
       class="flex items-start justify-between w-full text-left text-gray-400 focus:outline-none focus:text-gray-900"
       x-bind:aria-expanded="openPanel === 7">
       <span class="font-medium text-gray-900">
-        If I need help, is there any support?
+        如果需要帮助，会提供支持吗?
       </span>
       <span class="flex items-center ml-6 h-7">
         <svg class="w-6 h-6 transform rotate-0"
@@ -717,7 +710,7 @@ fill="none" viewBox="0 0 404 784">
 </dt>
 <dd class="pr-12 mt-2" x-show="openPanel === 7" style="display: none;">
   <p class="text-base leading-6 text-gray-700">
-    Yes, you can ask questions on our <a class="text-indigo-600" href="https://discord.gg/7cpgPxv">Discord community</a>. We also offer paid consulting &mdash; <a class="text-indigo-600" href="/contact/">just shoot us an email.</a>
+    是的，你可以在 <a class="text-indigo-600" href="https://discord.gg/7cpgPxv">Discord community</a>提问. 我还提供有偿咨询服务 &mdash; <a class="text-indigo-600" href="/contact/">只需要来一封email.</a>
   </p>
 </dd>
 </div>
