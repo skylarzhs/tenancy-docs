@@ -105,7 +105,6 @@
                     </p>
                     <p class="text-sm leading-5 text-gray-500">
                       关于识别租户的东西有：中间件、解析器（resolvers）和手动识别。
-                      Everything about identifying tenants. Middlewares, resolvers, or manual identification.
                     </p>
                   </div>
                 </a>
