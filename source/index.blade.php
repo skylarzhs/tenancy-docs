@@ -9,7 +9,7 @@
       </div>
       <h2
       class="mt-1 text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
-      Tenancy for Laravel 中文版
+      Tenancy for Laravel 中文站
       <!-- <br class="hidden md:inline" />
         <span class="">is the good stuff</span> -->
       </h2>
