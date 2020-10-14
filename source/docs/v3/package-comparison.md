@@ -1,43 +1,43 @@
 ---
-title: Compared to other packages
+title: 与其他包相比
 extends: _layouts.documentation
 section: content
 ---
 
-# Compared to other packages {#compared-to-other-packages}
+# 与其他包相比 {#compared-to-other-packages}
 
 ## hyn/multi-tenancy {#hyn-multi-tenancy}
 
-This package intends to provide you with the necessary tooling for adding multi-tenancy **manually** to your application. It will give you model traits, classes for creating tenant databases, and some additional tooling.
+这个包意在为在你应用程序中**手动**添加多个租户而提供的一个必要工具。它将给你模型 traits、创建租户数据库的类和一些附加工具。
 
-It would have been a good option for when you want to implement multi-tenancy manually, but:
+当您想手动实现多租户时，它是一个不错的选择，但是：
 
-- It isn't being actively developed — no features have been added in the past ~year
-- It makes testing a nightmare.
+- 它不是一个在积极维护的包 —— 在过去一年内没有添加任何特性。
+- 它让测试工作变成噩梦。
 
-    Over the last few months, I've received this feedback:
+    在过去几个月里，我收到这样的反馈:
 
-    > But, I still can't run any tests in Hyn, and had some queuing problems I'm still nervous about.
+    > 但是, 我仍然不能在 Hyn 里运行任何测试，还有一些队列问题，我现在仍感到紧张。
 
-    > At the moment, our app is using latest Laravel and latest hyn/tenancy. The only thing I don't like about it is that tests are extremely fragile to the point where I don't dare mess with anything for risk of breaking everything
+    > 当时, 我们的应用使用最新 Laravel 和最新 hyn/tenancy，我唯一不喜欢它的地方是，测试非常脆弱，以至于我不敢乱动任何东西以免全部被破坏了。
 
-    > By the way, this package is awesome! It's so much better than the hyn alternative which is a bit of a mess in my opinion... It is a pity that I did not come across it in the first place.
-
-    I'm not sharing this to intentionally make hyn/multi-tenancy bad, but **be very careful if you decide to go with that package**.
+    > 顺便说一下，这个包相当不错的! 它比hyn要好得多，在我看来hyn有点乱，真是相见恨晚呀。
+    
+    我分享这些不是故意说 hyn/multi-tenancy 很差，但是**如果你决定用那个包装的话，要非常小心**。
 
 ## tenancy/tenancy {#tenancy-tenancy}
 
-This package intends to provide you with a framework for building your own multi-tenancy implementation. The documentation is quite lacking, so I couldn't get a too detailed idea of what it does, but from my understanding, it gives you things like events which you can use to build your own multi-tenancy logic.
+这个包意在为你实现多租户提供一个框架， 文档相当匮乏， 因此我不太详细的了解它要做说明，但从我理解来看, 它提供事件之类的东西，您可以使用它们构建自己的多租户逻辑。
 
-If you want the absolute highest flexibility and would otherwise build your own implementation, looking into this package might be useful.
+如果您希望获得足够的灵活性，并且希望构建自己的实现，那么研究这个包可能会很有用。
 
-However, if you're looking for a package that will help you make a multi-tenant project quickly, this is probably not the right choice.
+但是，如果你想要寻找一个能快速创建多租户项目的包，这可能不是一个好的选择。
 
 ## spatie/laravel-multitenancy {#tenacy-laravel-multitenancy}
 
-This package is a very simple implementation of multi-tenancy.
+这个包很简单的实现了多租户。
 
-It does the same thing as stancl/tenancy v2, but with far fewer features out of the box.
+它与 stancl/tenancy v2 类似, 但是只有功能更少一些。
 
 The only benefit I see in this package compared to v2 of stancl/tenancy is that it uses Eloquent out of the box, which makes things like Cashier integration easier. But, that's irrelevant since we're in v3 already and v3 uses Eloquent.
 
@@ -45,58 +45,58 @@ So, I suggest you consider this package only if you value simplicity for some re
 
 ## stancl/tenancy {#stancl-tenancy}
 
-In my — biased, of course, but likely true as well — opinion, this package is the absolute best choice for the vast majority of applications.
+依我偏见（当然这个观点也几乎是事实）， 这个包是绝大多数应用的绝佳选择。
 
-The only packages I'd realistically consider are mine (of course) and tenancy/tenancy if you need something **very** custom, though I don't see the reason for that in 99% of applications.
+我实际上只会考虑用我的包（这是当然咯），如果你必须**非常**定制可以考虑 tenancy/tenancy包，尽管我在99%的应用中看不到这样的原因。
 
-This package attempts to be about as flexible as tenancy/tenancy, but also provide you with the absolute largest amount of out-of-the-box features and other tooling. It continues its path as the first package to have been using the automatic approach with adding many more features — most of which are "enterprise" features, in v3.
+这个包努力做到像 tenancy/tenancy 那样灵活，而且还为您提供了大量的开箱即用特性和其他工具，It continues its path as the first package to have been using the automatic approach with adding many more features — most of which are "enterprise" features, in v3.
 
 To give you an incomplete-but-good-enough list of features, this package supports:
-
-- Multi-database tenancy
-    - creating databases
+为了给你足够好的功能，这个包提供：
+- 多数据库租用
+    - 创建数据库（译注：通过程序创建）
         - MySQL
         - PostgreSQL
         - PostgreSQL (schema mode)
         - SQLite
-    - creating database users
-    - automatically switching the database
-    - CLI commands, with more features than e.g. spatie/laravel-multitenancy
+    - 创建数据库用户（译注：为数据库分配用户）
+    - 自动切换数据库
+    - CLI命令行, 还有比 spatie/laravel-multitenancy 多了很多的功能。
         - migrate
         - migrate:fresh
         - seed
-- Single-database tenancy
-    - model traits with global scopes
-- Rich event system
-- **Very high testability**
-- Automatic tenancy
-    - tenancy bootstrappers to switch:
+- 单数据库租用
+    - 模型 traits 使用全局范围限定（global scopes）
+- 丰富的事件系统
+- **非常高的可测试性**
+- 自动租用
+    - 租用引导成功后（译注：识别租户后）切换的有:
         - database connections
         - redis connections
         - cache tags
         - filesystem roots
         - queue context
-- Manual tenancy
-    - model traits
-- Out of the box tenant identification
-    - domain identification
-    - subdomain identification
-    - path identification
-    - request data identification
-    - middleware classes for the methods above
-    - CLI argument identification
-    - manual identification (e.g. in tinker)
-- Integration with many packages
+- 手动租用
+    - 模型 traits
+- 开箱即用的租户识别
+    - 域名识别
+    - 子域名识别
+    - 路径识别
+    - 请求数据识别
+    - 中间件——为以上几种识别方法而生
+    - 命令行界面参数识别
+    - 手动识别 (例如在 tinker 中)
+- 与许多的其他包集成（可一起稳定的运行）
     - spatie/laravel-medialibrary
     - spatie/laravel-activitylog
     - Livewire
     - Laravel Nova
-        - for managing tenants
-        - for **using inside the tenant application**
+        - 管理租户
+        - **在租户应用程序内部使用**
     - Laravel Horizon
     - Laravel Telescope
     - Laravel Passport
-- **Syncing users (or any other database resources) between multiple tenant databases**
-- Dependency injection of the current tenant
-- Tenant **user impersonation**
-- **Cached tenant lookup**, universal for all tenant resolvers
+- **在多个租户数据库之间同步用户 (或任意其他数据库资源)**
+- 当前租户的依赖项注入
+- 租户的 **用户摸您**
+- **缓存租户查找**，适用于所有租户的解析器
