@@ -1,60 +1,61 @@
 ---
-title: Event system
+title: 事件系统
 extends: _layouts.documentation
 section: content
 ---
 
 
-# Event system {#event-system}
+# 事件系统 {#event-system}
 
-This package is heavily based around events, which makes it incredibly flexible.
+这个包在很大程度上是基于事件的，这使得它非常灵活。
 
-By default, the events are configured in such a way that the package works like this:
+默认情况下，配置好事件后的工作方式如下:
 
-- A request comes in for a tenant route and hits an identification middleware
-- The identification middleware finds the correct tenant and runs
+- 对于从租户路上过来的请求会触发一个租户识别中间件。
+- 这个识别中间件会找到正确的租户并运行。
 
 ```php
 $this->tenancy->initialize($tenant);
 ```
 
-- The `Stancl\Tenancy\Tenancy` class sets the `$tenant` as the current tenant and fires a `TenancyInitialized` event
-- The `BootstrapTenancy` class catches the event and executes classes known as [tenancy bootstrappers]({{ $page->link('tenancy-bootstrappers') }}).
-- The tenancy bootstrappers make changes to the application to make it "scoped" to the current tenant. This by default includes:
-    - Switching the database connection
-    - Replacing `CacheManager` with a scoped cache manager
-    - Suffixing filesystem paths
-    - Making queues store the tenant id & initialize tenancy when being processed
+-  `Stancl\Tenancy\Tenancy` 类通过设置 `$tenant` 为当前租户并且触发一个 `TenancyInitialized` 事件。
+-  `BootstrapTenancy` 类会捕获这个事件并执行这个前面提到的（已知）[租户引导器（tenancy bootstrappers）]({{ $page->link('tenancy-bootstrappers') }}).
+- 这个租户引导器会限制应用程序仅在当前租户范围中，这个默认设置包括:
+    - 切换数据库连接
+    - 替换 `CacheManager`的缓存管理范围
+    - 在文件系统路径增加后缀
+    - 使用队列存储租户id，当队列开始执行的时会初始化租户
 
-Again, all of the above is configurable. You might even disable all tenancy bootstrappers, and just use tenant identification and scope your app manually around the tenant stored in `Stancl\Tenancy\Tenancy`. The choice is yours.
+
+同样，上面这些所有的配置都是可以不用租户引导器，仅使用租户识别并在`Stancl\Tenancy\Tenancy`中手动限制你的app的租户范围，怎么用选择权在你。
 
 # TenancyServiceProvider {#tenancyserviceprovider}
 
-This package comes with a very convenient service provider that's added to your application when you install the package. This service provider is used for mapping listeners to events specific to the package and is the place where you should put any tenancy-specific service container calls — to not pollute your AppServiceProvider.
+这个包附带了一个非常方便的服务提供者（它在安装这个包时就添加到你应用程序中），这个服务提供者被用于侦听这包的具体事件，你应该将它放在一个特别的租户服务容器中调用 （tenancy-specific service container，译注：就是单独弄一个XXXServiceProvider方便管理，而不去污染你的 AppServiceProvider）。
 
-Note that you can register listeners to this package's events **anywhere you want**. The event/listener mapping in the service provider exists only to make your life easier. If you want to register the listeners manually, like in the example below, you can.
+注意，你能在**任何地方**注册侦听这个包的的事件，把事件/侦听者对应关系放在这个服务提供这里可以让你的工作更轻松。如果你想要手动注册这个侦听器，请参考如下：
 
 ```php
 Event::listen(TenancyInitialized::class, BootstrapTenancy::class);
 ```
 
-# Bootstrapping tenancy {#bootstrapping-tenancy}
+# 引导租恁 {#bootstrapping-tenancy}
 
-By default, the `BootstrapTenancy` class is listening to the `TenancyInitialized` event (exactly as you can see in the example above). That listener will execute the configured tenancy bootstrappers to transition the application into the tenant's context. You can read more about this on the [tenancy bootstrappers]({{ $page->link('tenancy-bootstrappers') }}) page.
+默认情况下, 这个 `BootstrapTenancy` 类会侦听 `TenancyInitialized` 事件 (正如你在上面的例子中看到的那样)，该侦听器将执行已配置的租恁引导器，以将应用程序转换到租户的环境（上下文）中。了解更多 [租恁引导器]({{ $page->link('tenancy-bootstrappers') }}) page.
 
-Conversely, when the `TenancyEnded` event fires, the `RevertToCentralContext` event transitions the app back into the central context.
+相反的, 当`TenancyEnded` 事件被触发, 这个 `RevertToCentralContext` 事件会将app切换回中心环境（中心上下文里）。
 
-# Job pipelines {#job-pipelines}
+# 任务管道 {#job-pipelines}
 
-You may want to use job pipelines even in projects that don't use this package — I think they're a cool concept so they're extracted into a separate package: [github.com/stancl/jobpipeline](https://github.com/stancl/jobpipeline)
+即使在不使用此包的项目中，也可能希望使用任务管道，我认为这是一个很不错的观念，因此它们被提取到了一个独立的包：[github.com/stancl/jobpipeline](https://github.com/stancl/jobpipeline)
 
-The `JobPipeline` is a simple, yet **extremely powerful** class that lets you **convert any (series of) jobs into event listeners.**
+这 `JobPipeline` 是很简单但 **非常强大的** 类， 让你**将任何(连续)的任务转换为事件侦听器。
 
-You may use a job pipeline like any other listener, so you can register it in the `TenancyServiceProvider`, `EventServiceProvider` using the `$listen` array, or in any other place using `Event::listen()` — up to you.
+你可以像其他侦听器那样使用任务管道，因此你可以在`TenancyServiceProvider`中注册，至于在`EventServiceProvider`使用 `$listen` 数组，还是在其他任何地方使用 `Event::listen()`，这由你决定。
 
-## Creating job pipelines {creating-job-pipelines}
+## 创建任务管道 {creating-job-pipelines}
 
-To create a job pipeline, start by specifying the jobs you want to use:
+要创建任务管道，先从指定一个任务开始：
 
 ```php
 use Stancl\JobPipeline\JobPipeline;
@@ -67,7 +68,7 @@ JobPipeline::make([
 ])
 ```
 
-Then, specify what variable you want to pass to the jobs. This will usually come from the event.
+然后，指定要传给这个任务的变量，这通常来自于事件。
 
 ```php
 use Stancl\JobPipeline\JobPipeline;
@@ -83,9 +84,9 @@ JobPipeline::make([
 })
 ```
 
-Next, decide if you want to queue the pipeline. By default, pipelines are synchronous (= not queued) by default.
+下一步，决定是否要将管道排队（译注：顺序执行），默认情况下管道是同步的（即不排队）。
 
-If you **do** want pipelines to be queued by default, you can do that by setting a static property:
+如果您**确实**希望管道在默认情况下排队，你可以通过设置一个静态属性来实现：
 `\Stancl\JobPipeline\JobPipeline::$shouldBeQueuedByDefault = true;`
 
 ```php
@@ -102,7 +103,7 @@ JobPipeline::make([
 })->shouldBeQueued(true),
 ```
 
-Finally, convert the pipeline to a listener and bind it to an event:
+最后，转换这个管道为侦听器并绑定一个事件：
 
 ```php
 use Stancl\Tenancy\Events\TenantCreated;
@@ -118,16 +119,15 @@ Event::listen(TenantCreated::class, JobPipeline::make([
     return $event->tenant;
 })->shouldBeQueued(true)->toListener());
 ```
+要注意，你可以将任务管道甚至单个的任务转换为侦听器，如果您在任务类中有一些逻辑，并且不希望创建侦听器类只是为了在触发事件时能够运行这些任务，那么这将非常有用。
 
-Note that you can use job pipelines even for converting single jobs to event listeners. That's useful if you have some logic in job classes and don't want to create listener classes just to be able to run these jobs as a result of an event being fired.
+# 可用的事件 {#available-events}
 
-# Available events {#available-events}
+注意: 一些数据库事件 (`DatabaseMigrated`, `DatabaseSeeded`, `DatabaseRolledback` 和可能的其他事件) 是 **在租户环境中触发** 这取决于应用程序引导租赁的方式, 如果需要的话，你可能有需要具体指出如何在这些事件的侦听器中与中央数据库交互。
 
-Note: Some database events (`DatabaseMigrated`, `DatabaseSeeded`, `DatabaseRolledback` and possibly others) are **fired in the tenant context.** Depending on how your application bootstraps tenancy, you might need to be specific about interacting with the central database in these events' listeners — that is, if you need to.
+注意: 所有的事件都处于 `Stancl\Tenancy\Events` 命名空间中。
 
-Note: All events are located in the `Stancl\Tenancy\Events` namespace.
-
-### **Tenancy** {#tenancy}
+### **租恁** {#tenancy}
 
 - `InitializingTenancy`
 - `TenancyInitialized`
@@ -138,11 +138,13 @@ Note: All events are located in the `Stancl\Tenancy\Events` namespace.
 - `RevertingToCentralContext`
 - `RevertedToCentralContext`
 
-Note the difference between *initializing tenancy and bootstrapping* tenancy. Tenancy is initialized when a tenant is loaded into the `Tenancy` object. Whereas bootstrapping happens **as a result of initialization** — if you're using automatic tenancy, the `BootstrapTenancy` class is listening to the `TenancyInitialized` event and after it's done executing bootstrappers, it fires an event saying that tenancy was bootstrapped. You want to use the bootstrapped event if you want to execute something **after the app has been transitioned to the tenant context.**
+注意*初始化租恁与引导租恁*的区别，当租户被加载到`Tenancy`对象中时,完成租恁初始化，然而引导是初始化的结果，
+如果你使用的自动租恁模式，`BootstrapTenancy` 类是侦听`TenancyInitialized` 事件并且在侦听后执行引导器，它触发一个事件表示租恁被引导了（译注：先触发初始化事件`TenancyInitialized`再触发`BootstrapTenancy`事件），
+如果希望在应用程序转换到租户环境后执行某些操作，则需要使用引导事件。
 
-### Tenant {#tenant}
+### 租户 {#tenant}
 
-The following events are dispatched as a result of Eloquent events being fired in the default `Tenant` implementation (the most often used events are bold):
+由于默认实现了`Tenant`，那么在 Eloquent 事件被触发的时下面这些事件会被调用。(常用的用粗体表示):
 
 - `CreatingTenant`
 - **`TenantCreated`**
@@ -153,9 +155,9 @@ The following events are dispatched as a result of Eloquent events being fired i
 - `DeletingTenant`
 - **`TenantDeleted`**
 
-### Domain {#domain}
+### 域名 {#domain}
 
-These events are optional. They're only relevant to you if you're using domains for your tenants.
+这些事件是可选的， 只有当你为你的租户使用域名时，它们才与你相关.
 
 - `CreatingDomain`
 - **`DomainCreated`**
@@ -166,9 +168,9 @@ These events are optional. They're only relevant to you if you're using domains 
 - `DeletingDomain`
 - **`DomainDeleted`**
 
-### Database {#database}
+### 数据库 {#database}
 
-These events are also optional. They're relevant to you if you're using multi-database tenancy:
+这些事件也是可选择，只有当你使用多数据库租恁方式时，它们才与你相关：
 
 - `CreatingDatabase`
 - **`DatabaseCreated`**
@@ -181,7 +183,7 @@ These events are also optional. They're relevant to you if you're using multi-da
 - `DeletingDatabase`
 - **`DatabaseDeleted`**
 
-### Resource syncing {#resource-syncing}
+### 资源同步 {#resource-syncing}
 
 - **`SyncedResourceSaved`**
 - `SyncedResourceChangedInForeignDatabase`
