@@ -1,24 +1,24 @@
 ---
-title: Tenants
+title: 租户
 extends: _layouts.documentation
 section: content
 ---
 
-# Tenants {#tenants}
+# 租户 {#tenants}
 
-A tenant can be any model that implements the `Stancl\Tenancy\Contracts\Tenant` interface.
+租户就是一个实现了`Stancl\Tenancy\Contracts\Tenant`接口的任何模型。
 
-The package comes with a base `Tenant` model that's ready for common things, though will require extending in most cases as it attempts not to be too opinionated.
+这个包为常见的应用附带了一个基础的`Tenant`模型，虽然在大多数情况下需要扩展它，因为它有点呆板（ it attempts not to be too opinionated）。
 
-The base model has the following features on top of the ones that are necessary by the interface:
+这个基础模型包含的必要接口的功能有:
 
-- Forced central connection (lets you interact with Tenant models even in tenant contexts)
-- Data column trait — lets you store arbitrary keys. Attributes that don't exist as columns on your `tenants` table go to the `data` column as serialized JSON.
-- Id generation trait — when you don't supply an ID, a random uuid will be generated. An alternative to this would be using AUTOINCREMENT columns. If you wish to use numerical ids, change the `create_tenants_table` migration to use `bigIncrements()` or some such column type, and set `tenancy.id_generator` config to null. That will disable the ID generation altogether, falling back to the database's autoincrement mechanism.
+- 强制中心连接 (可让你在租户模型甚至在租户环境中进行交互)
+- 数据列 trait —— 让你存储专有Keys， trait 出`data`列，租户模型中没有自己列的属性将存储在`data` JSON列中。
+- Id 生成 trait — 当你没有提供 ID, 将生成一个随机的 uuid ， 如果你希望使用数字ids，还有一个替代方法是使用自增列， 修改 `create_tenants_table` 迁移，使用 `bigIncrements()` 或其他列类型, 并且设置 `tenancy.id_generator` 配置为 null，那将完全禁止 id 生成, 从而使用数据库自增机制。
 
-**Most** applications using this package will want domain/subdomain identification and tenant databases.
+**大多数** 应用程序使用这个包想要 域名/子域名进行租户识别以及（独立的）租户数据库 。
 
-To do this, create a new model, e.g. `App\Tenant`, that looks like this:
+首先，创建一个新的模型，例如`App\Tenant`，看起来如：
 
 ```php
 <?php
@@ -36,19 +36,19 @@ class Tenant extends BaseTenant implements TenantWithDatabase
 }
 ```
 
-Then, configure the package to use this model in `config/tenancy.php`:
+然后， 要使用这个模型,还需在 `config/tenancy.php`配置:
 
 ```php
 'tenant_model' => \App\Tenant::class,
 ```
 
-If you want to customize the `Domain` model, you can do that too.
+如果你想要自定义`Domain`模型，你也能那么做。`
 
-**If you don't need domains or databases, ignore the steps above.** Everything will work just as well.
+**如果你不需要域名或数据库可忽略上面的步骤.** 仍然会正常运行。
 
-## Creating tenants {#creating-tenants}
+## 创建租户 {#creating-tenants}
 
-You can create tenants like any other models:
+你可以像其他模型那样创建租户:
 
 ```php
 $tenant = Tenant::create([
@@ -56,14 +56,13 @@ $tenant = Tenant::create([
 ]);
 ```
 
-After the tenant is created, an event will be fired. This will result in things like the database being created and migrated, depending on what jobs listen to the event.
+在租户创建后就会出发一个事件，那些被监听的事件都触发，如数据库被创建和执行迁移等。
 
-## Custom columns {#custom-columns}
+## 自定义列 {#custom-columns}
 
-Attributes of the tenant model which don't have their own column will be stored in the `data` JSON column.
+租户模型中没有自己列的属性将存储在`data` JSON列中。
 
-You may define the custom columns be overriding the `getCustomColumns()` method on your `Tenant` model:
-
+你可以在你的`Tenant`模型定义自定义去覆盖`getCustomColumns()`方法。
 ```php
 public static function getCustomColumns(): array
 {
@@ -74,10 +73,9 @@ public static function getCustomColumns(): array
     ];
 }
 ```
+**注意不要忘记了把`id`放在自定义列（columns）中**
 
-**Don't forget to keep `id` in the custom columns!**
-
-If you want to rename the `data` column, rename it in a migration and implement this method on your model:
+如果你要重命名`data`字段，在迁移文件中重命名并在你的模型中实现这个方法。
 
 ```php
 public static function getDataColumn(): string
@@ -85,19 +83,18 @@ public static function getDataColumn(): string
     return 'my-data-column';
 }
 ```
-
-Note that querying data inside the `data` column with `where()` will require that you do for example:
+注意：在`data`列中使用`where()`语句查询，参考下面的例子：
 ```php
 where('data.foo', 'bar')
 ```
 
-The data column is encoded/decoded only on model retrieval and saving.
+数据列仅在模型读取和保存时进行编码/解码。
 
-Also a good rule of thumb is that when you need to query the data with `WHERE` clauses, it should have a dedicated column. This will improve performance and you won't have to think about the `data.` prefixing.
+另外，有一个经验法则是当你使用`WHERE`查询子句查询时，它应该有个专用的字段名，这将会改进性能并不用去想`data.`前缀。
 
-## Running commands in the tenant context {#running-commands-in-the-tenant-context}
+## 在租户环境中运行命令行 {#running-commands-in-the-tenant-context}
 
-You may run commands in a tenant's context and then return to the previous context (be it central, or another tenant's) by passing a callable to the `run()` method on the tenant object. For example:
+你可以在租户环境中通过运行命令（在租户模型中调用`run()`方法），会返回前一个环境（中心环境或另一个租户环境），例如：
 
 ```php
 $tenant->run(function () {
@@ -105,25 +102,25 @@ $tenant->run(function () {
 });
 ```
 
-## Internal keys {#internal-keys}
+## 内部键 {#internal-keys}
 
-Keys that start with the internal prefix (`tenancy_` by default, but you can customize this by overriding the `internalPrefix()` method) are for internal use, so don't start any attribute/column names with that.
+我们会在内部的健中使用前缀（默认是`tenancy`前缀，但你可以通过覆盖`internalPrefix()`自定义这个它），因此不要用这个前缀作为任何属性/列名的开头
 
-## Events {#events}
+## 事件 {#events}
 
-The `Tenant` model dispatches Eloquent events, all of which have their own respective class. You can read more about this on the [Event system]({{ $page->link('event-system') }}) page.
+`Tenant`模式会调度 Elooquent 事件，它们都有各自的类，了解更多可以去 [事件系统]({{ $page->link('event-system') }}) 页。
 
-## Accessing the current tenant {#accessing-the-current-tenant}
+## 访问当前租户 {#accessing-the-current-tenant}
 
-You may access the current tenant using the `tenant()` helper. You can also pass an argument to get an attribute from that tenant model, e.g. `tenant('id')`.
+你可以使用 `tenant()` 帮助方法来访问当前租户，您还可以传递一个参数来从租户模型获取属性, 例如： `tenant('id')`。
 
-Alternatively, you may typehint the `Stancl\Tenancy\Contracts\Tenant` interface to inject the model using the service container.
+抑或是, 你可以通过`Stancl\Tenancy\Contracts\Tenant`接口的类型提示使用服务容器注入到这个模型中。
 
-## Incrementing IDs {#incrementing-ids}
+## 自增 IDs {#incrementing-ids}
 
-By default, the migration uses `string` for the `id` column, and the model generates UUIDs when you don't supply an `id` during tenant creation.
+默认情况下, 迁移里的 `id` 列使用 `string` 类型，并且在创建租户之前当你不提供`id`列，模型就会 生成 UUID做为id。
 
-If you'd like to use incrementing ids instead, you can override the `getIncrementing()` method:
+如果你喜欢使用自增id，你可以覆盖`getIncrementing()`方法：
 
 ```php
 public function getIncrementing()
