@@ -123,7 +123,7 @@ Event::listen(TenantCreated::class, JobPipeline::make([
 
 # 可用的事件 {#available-events}
 
-注意: 一些数据库事件 (`DatabaseMigrated`, `DatabaseSeeded`, `DatabaseRolledback` 和可能的其他事件) 是 **在租户环境中触发** 这取决于应用程序引导租赁的方式, 如果需要的话，你可能有需要具体指出如何在这些事件的侦听器中与中央数据库交互。
+注意: 一些数据库事件 (`DatabaseMigrated`, `DatabaseSeeded`, `DatabaseRolledback` 和可能的其他事件) 是 **在租户环境中触发** 这取决于应用程序引导租赁的方式, 如果需要的话，你可能有需要指定如何在这些事件的侦听器中与中央数据库交互。
 
 注意: 所有的事件都处于 `Stancl\Tenancy\Events` 命名空间中。
 
