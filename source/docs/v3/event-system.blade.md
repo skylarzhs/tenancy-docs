@@ -170,7 +170,7 @@ Event::listen(TenantCreated::class, JobPipeline::make([
 
 ### 数据库 {#database}
 
-这些事件也是可选择，只有当你使用多数据库租恁方式时，它们才与你相关：
+这些事件也是可选的，只有当你使用多数据库租恁方式时，它们才与你相关：
 
 - `CreatingDatabase`
 - **`DatabaseCreated`**
