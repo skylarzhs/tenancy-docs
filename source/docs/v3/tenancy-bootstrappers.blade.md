@@ -33,20 +33,13 @@ php artisan cache:clear --tag=tenant_123
 这个引导器会干以下几件事情：
 
 - 使用`Storage`门面时候添加后缀。
-- Suffixes roots of disks used by the `Storage` facade
 - `storage_path()`后缀（如果使用本地磁盘来存储租户数据是有用的）
-- Suffixes `storage_path()` (useful if you're using the local disk for storing tenant data)
 - 让 `asset()` 用 TenantAssetController 去获取租户独有的数据（tenant-specific data）。
-- Makes `asset()` calls use the TenantAssetController to retrieve tenant-specific data
     - 注意：一些 assets，如：图片，你可能想要使用`global_asset()`（如果这个asset是所有租户共享的），并且  JS/CSS assets，你应该使用`mix()` 或又用 `global_asset()`
-    - Note: For some assets, e.g. images, you may want to use `global_asset()` (if the asset is shared for all tenants). And for JS/CSS assets, you should use `mix()` or again `global_asset()`.
 
 这个引导器是最复杂的一个，到目前为止，v3文档中还没有解释（很快就会有一个更好的文档），但是现在请参考2.x文档来了解文件系统租恁[https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/](https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/)。
-This bootstrapper is the most complex one, by far. We will have a — better written — explanation in v3 docs soon, but for now, refer to the 2.x docs for information about filesystem tenancy. [https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/](https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/)
 
 如果您不想以这种方式引导文件系统租赁，比如为每个租户使用 S3 bucket，你可以那么做，去看下这个包的引导器部分，看怎样根据你的想法写一个自己的引导器，并且你可以用任何你想要的方式来实现它。
-If you don't want to bootstrap filesystem tenancy in this way, and want to — for example — provision an S3 bucket for each tenant, 
-you can absolutely do that. Look at the package's bootstrappers to get an idea of how to write one yourself, and feel free to implement it any way you want.
 
 ## 队列租恁引导器 {#queue-tenancy-bootstrapper}
 
