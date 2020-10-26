@@ -1,18 +1,19 @@
 ---
-title: Optional features
+title: 可选特征
 extends: _layouts.documentation
 section: content
 ---
 
-# Optional features {#optional-features}
+# 可选特征 {#optional-features}
 
-"Features" are classes that provide additional functionality that's not needed for the core tenancy logic. Out of the box, the package comes with these Features:
+"特征"是一个提供附加功能的类，它在核心租户逻辑中不是必须的，这个包附带了这几个特征：
 
-- [`UserImpersonation`]({{ $page->link('features/user-impersonation') }}) for generating impersonation tokens for users of a tenant's DB from other contexts
-- [`TelescopeTags`]({{ $page->link('features/telescope-tags') }}) for adding tags with the current tenant id to Telescope entries
-- [`TenantConfig`]({{ $page->link('features/tenant-config') }}) for mapping keys from the tenant storage into the application config
-- [`CrossDomainRedirect`]({{ $page->link('features/cross-domain-redirect') }}) for adding a `domain()` macro on `RedirectResponse` letting you change the intended hostname of the generated route
-- [`UniversalRoutes`]({{ $page->link('features/universal-routes') }}) for route actions that work in both the central & tenant context
-All of the package's Features are in the `Stancl\Tenancy\Features` namespace.
+- [`UserImpersonation`]({{ $page->link('features/user-impersonation') }}) 为了能在某个租户环境（或中心环境）中，为了让用户访问另一个租户的数据库，生成一个模仿的 token。
+- [`TelescopeTags`]({{ $page->link('features/telescope-tags') }}) 为了添加使用当前租户的ID作为标记去限制范围（Telescope entries）。
+- [`TenantConfig`]({{ $page->link('features/tenant-config') }}) 为了将租户储存映射到应用程序配置。
+- [`CrossDomainRedirect`]({{ $page->link('features/cross-domain-redirect') }})为在 `RedirectResponse` 上添加一个 `domain()` 宏，允许你改变这个生成路由的域名。
+- [`UniversalRoutes`]({{ $page->link('features/universal-routes') }}) 为了一些可同时在租户/中心环境中访问的路由动作。
+这个包的所有特性是在 `Stancl\Tenancy\Features` 命名空间中。
 
-You may register features by adding their class names to the `tenancy.features` config.
+你可以在`tenancy.features`配置中通过添加它们的类名来注册这些特性。
+
