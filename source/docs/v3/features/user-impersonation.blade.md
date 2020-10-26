@@ -1,116 +1,124 @@
 ---
-title: User impersonation
+title: 用户模拟
 extends: _layouts.documentation
 section: content
 ---
 
-# User impersonation {#user-impersonation}
+# 用户模拟 {#user-impersonation}
 
-This package comes with a feature that lets you impersonate users inside tenant databases. This feature works with **any identification method** and **any auth guard** — even if you use multiple.
+这个包附带了一个让你模拟其他用户进入租户数据库的特性，这个特性适用于 **任何识别方法** 和 **任何授权看守器**，甚至使用了多个。
 
-## How it works
+## 它是如何运作的？
 
-You generate an impersonation token and store it in the central database, in the `tenant_user_impersonation_tokens` table.
+你生成了一个模拟的 token 并在重新数据库上保存，存在 `tenant_user_impersonation_tokens` 表中。
 
-Each record in the table holds the following data:
+表中的每条记录包含如下数据：
 
-- The token value (128 character string)
-- The tenant's id
-- The user's id
-- The name of the auth guard
-- The URL to redirect to after the impersonation takes place
+- Token的值（128长度字母字符串）
+- 这个租户的id
+- 这个用户的id
+- 授权看守器的名称
+- 模拟发生后要重定向的URL。
 
-You visit an impersonation route that you create — though little work is needed on your side, your route will mostly just call a method provided by the feature. This route is a **tenant route**, meaning it's on the tenant domain if you use domain identification, or prefixed with the tenant id if you use path identification.
+你访问一个你创建的模拟路由，虽然你这边不需要做什么工作，您的路由通常只会调用该特性提供的一个方法，这个路由如果是一个**租户路由**，这意味着如果你使用域名识别，它是在租户域名上，如果使用路径标识,则使用租户id作为前缀。
 
-This route checks tries to find a record in that table based on the token, and if it's valid it authenticates you with the stored user id against the auth guard and redirects you to the stored URL.
+这个路由会尝试根据Token来找出一条记录，它使用存储的用户id对您进行身份验证，如果验证有效就重定向到存储的URL
 
-If the impersonation succeeds, the token is deleted from the database.
+如果模拟成功了，这个token将会从数据库中删除。
 
-All tokens expire after 60 seconds by default, and this TTL can be customized — see the section at the very bottom.
+所有的token默认是60秒后过期，当然这个TTL能被自定义——参见本节的最下面。
 
-## Enabling the feature
+## 开启这个特性
 
-To enable this feature, go to your `config/tenancy.php` file and make sure the following class is in your `features` part of the config:
+要开启这个特性，去`config/tenancy.php` 文件确保下面的类在你配置文件的`features`的部分：
 
 ```jsx
 Stancl\Tenancy\Features\UserImpersonation::class,
 ```
 
-Next, publish the migration for creating the table with impersonation tokens:
+接下来，发布创建模拟tokens的表的迁移。
 
 ```jsx
 php artisan vendor:publish --tag=impersonation-migrations
 ```
 
-And finally, run the migration:
+最后，运行迁移：
 
 ```jsx
 php artisan migrate
 ```
 
-## Usage {#usage}
+## 用法 {#usage}
 
-First, you need to create a tenant route that looks like this:
+首先，你必须要创建一个租户路由，就像这样：
 
 ```jsx
 use Stancl\Tenancy\Features\UserImpersonation;
 
+// 我们在您的租户路由中
 // We're in your tenant routes!
 
 Route::get('/impersonate/{token}', function ($token) {
     return UserImpersonation::makeResponse($token);
 });
 
+//当然，在生产环境中使用控制器而不使用闭包路由，
+// 闭包路由不能被缓存。
 // Of course use a controller in a production app and not a Closure route.
 // Closure routes cannot be cached.
 ```
 
-Note that the route path or name are completely up to you. The only logic that the package does is generating tokens, verifying tokens, and doing the impersonated user log in.
+请注意,路由的路径或名称完全由您决定，这个包的唯一逻辑是生成token、验证token并且模拟用户登录。
 
-Then, to use impersonation in your app, generate a token like this:
+要在你的应用程序中使用模拟，像下面这样生成一个token：
 
 ```jsx
+//假设，我们在以模拟用户登录后，我们想要重定向到 dashboard 
 // Let's say we want to be redirected to the dashboard
 // after we're logged in as the impersonated user.
 $redirectUrl = '/dashboard';
 
 $token = tenancy()->impersonate($tenant, $user->id, $redirectUrl);
 ```
+并且将用户（多半是个"管理员"）重定向到你创建的路由。
 
-And redirect the user (or, presumably an "admin") to the route you created.
-
-### Domain identification {#domain-identification}
+### 域名识别 {#domain-identification}
 
 ```jsx
+// 注意：这不是包的一部分，这取决于你实现"主域名"的概念，
+// 也许你想为每一个租户是单独使用一个域名，这个包也能实现。
 // Note: This is not part of the package, it's up to you to implement
 // a concept of "primary domains" if you need them. Or maybe you use
 // one domain per tenant. The package lets you do anything you want.
+
 $domain = $tenant->primary_domain;
 return redirect("https://$domain/impersonate/{$token->token}");
 ```
 
-### Path identification {#path-identification}
+### 路径识别 {#path-identification}
 
 ```jsx
+// 确保你的路由使用了正确的前缀
 // Make sure you use the correct prefix for your routes.
+//
 return redirect("{$tenant->id}/impersonate/{$token->token}");
 ```
+就是这样，这个用户将会被重定向到你的模拟路由，作为模拟用户登录，并且最终重定向到你的重定向URL上。
 
-And that's it. The user will be redirected to your impersonation route, logged in as the impersonated user, and finally redirected to your redirect URL.
+### 自定义授权看守器 {#custom-auth-guards}
 
-### Custom auth guards {#custom-auth-guards}
-
+如果你使用多重授权看守器，您可能需要指定模拟逻辑应该使用哪一个授权看守器。
 If you're using multiple auth guards, you may want to specify what auth guard the impersonation logic should use.
 
-To do this, simply pass the auth guard name as the fourth argument to the `impersonate()` method. So to expand on our example above:
+为此，只需要将授权看守器名称作为第四个参数传递给`impersonate()`方法，我们开扩展一下上面的例子：
 
 ```jsx
 tenancy()->impersonate($tenant, $user->id, $redirectUrl, 'jwt');
 ```
 
-## Customization {#customization}
+## 定制 {#customization}
 
-You may customize the TTL of impersonation tokens by setting the following static property to the amount of seconds you want to use:
+通过设置下面的静态属性，你可以自定义模拟token的TTL（单位：秒）。
 
 ```jsx
 Stancl\Tenancy\Features\UserImpersonation::$ttl = 120; // 2 minutes
