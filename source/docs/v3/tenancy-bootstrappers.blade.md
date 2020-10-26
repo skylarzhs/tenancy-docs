@@ -28,7 +28,7 @@ php artisan cache:clear --tag=tenant_123
 
 注意，你必须使用支持标记的缓存存储，如：Redis。
 
-## 文件系统租恁引导器 tenancy bootstrapper {#filesystem-tenancy-boostrapper}
+## 文件系统租恁引导器 {#filesystem-tenancy-boostrapper}
 
 这个引导器会干以下几件事情：
 
