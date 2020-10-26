@@ -55,7 +55,7 @@ php artisan cache:clear --tag=tenant_123
 
 注意你需要 phpredis，predis是不能用的。
 
-## 制作引导器 {#writing-custom-bootstrappers}
+## 自制一个引导器 {#writing-custom-bootstrappers}
 
 如果你想为本包不涵盖的部分去实现租户引导，或者本包已涵盖，但你想要不同的行为，你可通过创建一个引导器类来实现这一点。
 
