@@ -1,65 +1,72 @@
 ---
-title: Tenancy bootstrappers
+title: 租恁引导器
 extends: _layouts.documentation
 section: content
 ---
 
-# Tenancy bootstrappers {#tenancy-bootstrappers}
+# 租恁引导器 {#tenancy-bootstrappers}
 
-Tenancy bootstrappers are classes which make your application tenant-aware in such a way that you don't have to change a line of your code, yet things will be scoped to the current tenant.
+租赁引导器是一个使应用程序能够识别租户的类，这样您就不需要更改一行代码，就会将所有的范围限定到当前租户。
 
-The package comes with these bootstrappers out of the box:
+这个包已经附带了这些引导器：
 
-## Database tenancy bootstrapper {#database-tenancy-bootstrapper}
+## 数据库租恁引导器 {#database-tenancy-bootstrapper}
 
-The database tenancy bootstrapper switches the **default** database connection to `tenant` after it constructs the connection for that tenant.
+数据库租恁引导器在租户构建连接(译创建租户)后，将 **默认** 数据库切换到到`tenant`。
 
-[Customizing databases]({{ $page->link('customizing-databases') }})
+[自定义数据库]({{ $page->link('customizing-databases') }})
 
-Note that only the **default** connection is switched. If you use another connection explicitly, be it using `DB::connection('...')`, a model `getConnectionName()` method, or a model trait like `CentralConnection`, **it will be respected.** The bootstrapper doesn't **force** any connections, it merely switches the default one.
+注意，那仅是 **默认** 数据库连接被切换了。如果明确的使用另一个数据库连接，当使用`DB::connection('...')`，使用模型方法`getConnectionName()`或在模型中 trait 如 `CentralConnection`，这些都是 **不会改变连接的** ，这个引导器不会 **强制** 任何连接，它仅仅会改变默认连接。
 
-## Cache tenancy bootstrapper {#cache-tenancy-bootstrapper}
+## 缓存租恁引导器 {#cache-tenancy-bootstrapper}
 
-The cache tenancy bootstrapper replaces the Laravel's CacheManager instance with a custom CacheManager that adds tags with the current tenant's ids to each cache call. This scopes cache calls and lets you selectively clear tenants' caches:
+缓存租恁引导器会用一个自定义缓存管理器去替换 Laravel 的缓存管理器实例，这个自定义缓存管理器在缓存被调用时，为缓存添加当前租户的id标记。
 
 ```php
 php artisan cache:clear --tag=tenant_123
 ```
 
-Note that you must use a cache store that supports tagging, e.g. Redis.
+注意，你必须使用支持标记的缓存存储，如：Redis。
 
-## Filesystem tenancy bootstrapper {#filesystem-tenancy-boostrapper}
+## 文件系统租恁引导器 tenancy bootstrapper {#filesystem-tenancy-boostrapper}
 
-This bootstrapper does the following things:
+这个引导器会干以下几件事情：
 
+- 使用`Storage`门面时候添加后缀。
 - Suffixes roots of disks used by the `Storage` facade
+- `storage_path()`后缀（如果使用本地磁盘来存储租户数据是有用的）
 - Suffixes `storage_path()` (useful if you're using the local disk for storing tenant data)
+- 让 `asset()` 用 TenantAssetController 去获取租户独有的数据（tenant-specific data）。
 - Makes `asset()` calls use the TenantAssetController to retrieve tenant-specific data
+    - 注意：一些 assets，如：图片，你可能想要使用`global_asset()`（如果这个asset是所有租户共享的），并且  JS/CSS assets，你应该使用`mix()` 或又用 `global_asset()`
     - Note: For some assets, e.g. images, you may want to use `global_asset()` (if the asset is shared for all tenants). And for JS/CSS assets, you should use `mix()` or again `global_asset()`.
 
+这个引导器是最复杂的一个，到目前为止，v3文档中还没有解释（很快就会有一个更好的文档），但是现在请参考2.x文档来了解文件系统租恁[https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/](https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/)。
 This bootstrapper is the most complex one, by far. We will have a — better written — explanation in v3 docs soon, but for now, refer to the 2.x docs for information about filesystem tenancy. [https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/](https://tenancyforlaravel.com/docs/v2/filesystem-tenancy/)
 
-If you don't want to bootstrap filesystem tenancy in this way, and want to — for example — provision an S3 bucket for each tenant, you can absolutely do that. Look at the package's bootstrappers to get an idea of how to write one yourself, and feel free to implement it any way you want.
+如果您不想以这种方式引导文件系统租赁，比如为每个租户使用 S3 bucket，你可以那么做，去看下这个包的引导器部分，看怎样根据你的想法写一个自己的引导器，并且你可以用任何你想要的方式来实现它。
+If you don't want to bootstrap filesystem tenancy in this way, and want to — for example — provision an S3 bucket for each tenant, 
+you can absolutely do that. Look at the package's bootstrappers to get an idea of how to write one yourself, and feel free to implement it any way you want.
 
-## Queue tenancy bootstrapper {#queue-tenancy-bootstrapper}
+## 队列租恁引导器 {#queue-tenancy-bootstrapper}
 
-This bootstrapper adds the current tenant's ID to the queued job payloads, and initializes tenancy based on this ID when jobs are being processed.
+这个引导器添加一个当前租户ID到队列任务中，当任务被执行后会根据租户ID来初始化租恁。
 
-You can read more about this on the *Queues* page:
+你能在 *队列*页阅读更多相关内容： 
 
-[Queues]({{ $page->link('queues') }})
+[队列]({{ $page->link('queues') }})
 
-## Redis tenancy bootstrapper {#redis-tenancy-bootstrapper}
+## Redis 租恁引导器 {#redis-tenancy-bootstrapper}
 
-If you're using `Redis` calls (not cache calls, **direct** Redis calls) inside the tenant app, you will want to scope Redis data too. To do this, use this bootstrapper. It changes the Redis prefix for each tenant.
+如果你租户应用程序中使用`Redis`调用（不是 redis 缓存调用，是**直接** 用Redis靠用），你也想要限制 Redis 数据的范围，那么就要用这个引导器，它能为每个租户改变 Redis 的前缀。
 
-Note that you need phpredis, predis won't work.
+注意你需要 phpredis，predis是不能用的。
 
-## Writing custom bootstrappers {#writing-custom-bootstrappers}
+## 制作引导器 {#writing-custom-bootstrappers}
 
-If you want to bootstrap tenancy for something not covered by this package — or something covered by this package, but you want different behavior — you can do that by creating a bootstrapper class.
+如果你想为本包不涵盖的部分去实现租户引导，或者本包已涵盖，但你想要不同的行为，你可通过创建一个引导器类来实现这一点。
 
-The class must implement the `Stancl\Tenancy\Contracts\TenancyBootstrapper` interface:
+这个类必须要实现`Stancl\Tenancy\Contracts\TenancyBootstrapper`接口：
 
 ```php
 namespace App;
@@ -81,7 +88,7 @@ class MyBootstrapper implements TenancyBootstrapper
 }
 ```
 
-Then, register it in the `tenancy.bootstrappers` config:
+然后，在`tenancy.bootstrappers`配置中注册：
 
 ```php
 'bootstrappers' => [
