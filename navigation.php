@@ -147,15 +147,15 @@ return [
                 '域名' => 'domains',
                 '事件系统' => 'event-system',
                 '路由' => 'routes',
-                '租户引导' => 'tenancy-bootstrappers',
-                '可选特征' => [
+                '租恁引导器' => 'tenancy-bootstrappers',
+                '可选特性' => [
                     'url' => 'optional-features',
                     'children' => [
                         '用户模拟' => 'features/user-impersonation',
                         'Telescope tags' => 'features/telescope-tags',
                         '租户配置' => 'features/tenant-config',
-                        'Cross-domain redirect' => 'features/cross-domain-redirect',
-                        'Universal routes' => 'features/universal-routes',
+                        '跨域名重定向' => 'features/cross-domain-redirect',
+                        '通用路由' => 'features/universal-routes',
                     ],
                 ],
             ],
